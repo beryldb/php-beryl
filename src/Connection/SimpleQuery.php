@@ -32,7 +32,7 @@ abstract class SimpleQuery implements CommandInterface
     {
         $this->command = $command;
         
-        if (isset($this->parameters))
+        if (!empty($parameters))
         {
              $this->parameters = $parameters;
         }

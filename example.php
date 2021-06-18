@@ -17,7 +17,8 @@ $client = new Beryl\Connection\Client([
 $client->flushdb();
 
 //echo $client->set("a", "b");
-echo $client->set("a2", "b2")->to_json();
+echo $client->set("a2", "b2")->to_json() . "\n";
+echo $client->get("a")->to_json() . "\n";
 
 return;
 
