@@ -15,7 +15,7 @@
 namespace Beryl\Commands;
 
 use Beryl\Base\Response;
-use Beryl\Channel\SimpleQuery;
+use Beryl\Connection\SimpleQuery;
 use Beryl\Base\Protocols;
 
 final class LPush extends SimpleQuery

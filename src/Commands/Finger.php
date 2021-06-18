@@ -14,7 +14,7 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Channel\CustomListCommand;
+use Beryl\Connection\CustomListCommand;
 use Beryl\Base\Protocols;
 
 final class Finger extends CustomListCommand

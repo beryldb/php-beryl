@@ -15,7 +15,7 @@
 namespace Beryl\Commands;
 
 use Beryl\Base\Response;
-use Beryl\Channel\CustomCommand;
+use Beryl\Connection\CustomCommand;
 use Beryl\Base\Protocols;
 
 final class GeoDel extends CustomCommand

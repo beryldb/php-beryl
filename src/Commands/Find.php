@@ -14,7 +14,7 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Channel\ListCommand;
+use Beryl\Connection\ListCommand;
 use Beryl\Base\Protocols;
 
 final class Find extends ListCommand

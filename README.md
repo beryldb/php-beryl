@@ -44,19 +44,17 @@ host ``127.0.0.1`` and port ``6378``.
 
 require __DIR__.'/vendor/autoload.php';
 
-use Beryl\Link;
+use Beryl\Connection;
 
-$client = new Link([  
+$client = new Connection\Server([  
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'timeout' => 30, 
                     'login' => 'root', 
-                    'password' => "default"
+                    'password' => 'default',
+                    'debug' => false
                    ]);
 
-$client->set('hello', 'world');
-$value = $client->get('hello');
-echo $value['value'] . "\r\n";
 
 ?>
 ```

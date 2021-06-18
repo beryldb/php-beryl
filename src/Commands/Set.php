@@ -15,8 +15,7 @@
 namespace Beryl\Commands;
 
 use Beryl\Base\Response;
-use Beryl\Channel\SimpleQuery;
-use Beryl\Base\Protocols;
+use Beryl\Connection\SimpleQuery;
 
 final class Set extends SimpleQuery
 {

@@ -10,7 +10,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Beryl\Connection;
 
-$client = new Connection\Server([  
+$client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'login' => 'root', 

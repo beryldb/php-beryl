@@ -2,9 +2,7 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use Beryl\Connection;
-
-$client = new Connection\Server([  
+$client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'timeout' => 30, 
@@ -13,8 +11,6 @@ $client = new Connection\Server([
                     'debug' => false
                    ]);
 
-
-return;
 
 /* Flush database. */
 

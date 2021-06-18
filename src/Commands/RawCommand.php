@@ -14,7 +14,7 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Channel\RawQuery;
+use Beryl\Connection\RawQuery;
 
 final class RawCommand extends RawQuery
 {

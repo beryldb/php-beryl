@@ -14,7 +14,7 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Channel\CustomCommand;
+use Beryl\Connection\CustomCommand;
 use Beryl\Base\Protocols;
 
 final class DB extends CustomCommand

@@ -16,7 +16,9 @@ namespace Beryl\Connection;
 
 use Beryl\Base\Command;
 use Beryl\Base\Response;
-use Beryl\Base\Protocols;
+use Beryl\Connection\Protocols;
+use Beryl\Connection\Server;
+
 use Beryl\Base\Parser;
 use Beryl\Commands;
 use Beryl\Exceptions\ConnectionException;
@@ -66,7 +68,6 @@ class Client
             $this->parser = new Parser();
             $args = $this->check_args($args);       
             $this->client = new Server($args);
-            parent::__construct($this->client);
       }
 
 

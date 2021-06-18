@@ -12,7 +12,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Beryl\Connection;
 
-$client = new Connection\Server([  
+$client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'login' => 'root', 
@@ -24,11 +24,8 @@ $client = new Connection\Server([
 
 $client->flushdb();
 
-print_r($client->set("a", "b"));
-print_r($client->set("a2", "b2"));
-print_r($client->get("a", "b"));
-print_r($client->copy("a", "c"));
-print_r($client->exists("b"));
+echo $client->set("a2", "b2")->to_json();
+echo $client->get("a2")->to_json();
 
 /* Find keys: offset 0, limit 3. */
 
