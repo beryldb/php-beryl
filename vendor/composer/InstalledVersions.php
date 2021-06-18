@@ -27,24 +27,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => 'dev-master',
-    'version' => 'dev-master',
+    'pretty_version' => '1.0.x-dev',
+    'version' => '1.0.9999999.9999999-dev',
     'aliases' => 
     array (
     ),
-    'reference' => '219990eaa4ead25e3fc1531dec975dbb1fe67c56',
+    'reference' => 'b1cf658fd8e86de86bf33d1ee803ac0bf76de5b5',
     'name' => 'beryldb/php-beryl',
   ),
   'versions' => 
   array (
     'beryldb/php-beryl' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => '1.0.x-dev',
+      'version' => '1.0.9999999.9999999-dev',
       'aliases' => 
       array (
       ),
-      'reference' => '219990eaa4ead25e3fc1531dec975dbb1fe67c56',
+      'reference' => 'b1cf658fd8e86de86bf33d1ee803ac0bf76de5b5',
     ),
     'doctrine/instantiator' => 
     array (
