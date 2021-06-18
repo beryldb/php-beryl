@@ -1,3 +1,5 @@
+PHP-Beryl is **NOT PRODUCTION READY YET**.
+
 ## Loading 
 
 PHP-beryl utilizes the autoloading features of PHP in order to run its
@@ -44,9 +46,7 @@ host ``127.0.0.1`` and port ``6378``.
 
 require __DIR__.'/vendor/autoload.php';
 
-use Beryl\Connection;
-
-$client = new Connection\Server([  
+$client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'timeout' => 30, 
