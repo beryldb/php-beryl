@@ -3,6 +3,30 @@
 PHP-beryl utilizes the autoloading features of PHP in order to run its
 files. If you are using Composer, autoloading should be managed automatically.
 
+## Using
+
+PHP-beryl requries [composer](http://getcomposer.org). You may install
+composer on Mac OS:
+
+```
+brew install composer
+```
+
+On Debian-based systems:
+
+```
+sudo apt update
+sudo apt install curl php-cli php-mbstring git unzip
+curl -sS https://getcomposer.org/installer -o composer-setup.php
+```
+
+Installing dependencies:
+
+```
+composer install
+```
+
+
 ```
 <?php
 
@@ -37,7 +61,6 @@ echo $value['value'] . "\r\n";
 ?>
 ```
 
-## Server status
 
 ## Development
 
