@@ -52,30 +52,9 @@ abstract class SimpleQuery implements CommandInterface
     public function Run()
     {
              $response = $this->client->send($this);
-
-
-/*             $result = [];
-             $result['code'] = $response->status;*/
-             
              $result = new QueryResult($response->status, $response->simple);             
-             
              return $result;
              
-             if ($response->status == $this->ok)
-             {
-             //      $result['status'] = INTERNAL_OK;
-                 $result->status = INTERNAL_OK;
-             }
-
-             if (in_array($response->status, $this->err))
-             {
-//                   $result['status'] = INTERNAL_ERROR;
-                   $result->status = INTERNAL_ERROR;
-             }
-            
-//             $result['value'] =  $response->simple;
-             $result->value = $response->simple;
-             return $result;
     }
     
 }

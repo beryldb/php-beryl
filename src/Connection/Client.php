@@ -65,7 +65,6 @@ class Client
       
       public function __construct($args)
       {
-            $this->parser = new Parser();
             $args = $this->check_args($args);       
             $this->client = new Server($args);
       }

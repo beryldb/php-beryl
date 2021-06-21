@@ -14,11 +14,10 @@ $client = new Beryl\Connection\Client([
 
 /* Flush database. */
 
-$client->flushdb();
+//print_r($client->flushdb());
 
-//echo $client->set("a", "b");
-echo $client->set("a2", "b2")->to_json() . "\n";
-echo $client->get("a")->to_json() . "\n";
+echo $client->set("a2", "b2")->status. "\n";
+echo $client->get("a2")->value . "\n";
 
 return;
 

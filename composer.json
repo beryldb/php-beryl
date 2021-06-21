@@ -2,6 +2,7 @@
   "name": "beryldb/php-beryl",
   "description": "PHP client for BerylDB.",
   "type": "library",
+  "license": "BSD-3-Clause",
   "keywords": [
     "beryldb",
     "key-value",
@@ -28,7 +29,6 @@
       "Beryl\\Tests\\": "tests/"
     }
   },
-  "license": "BSD-3-Clause",
   "authors": [
     {
       "name": "Carlos Ferry",

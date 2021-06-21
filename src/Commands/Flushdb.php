@@ -25,9 +25,7 @@ final class Flushdb extends CustomCommand
     public function __construct($client)
     {
         $this->command = "FLUSHDB";
-        $this->parameters = "";
-        
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+        parent::__construct($this->ok, $this->err, $client, $this->command, "");
     }
 }
 

@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b1cf658fd8e86de86bf33d1ee803ac0bf76de5b5',
+    'reference' => '8b5c03542d6f928439427069d09a415302a54142',
     'name' => 'beryldb/php-beryl',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b1cf658fd8e86de86bf33d1ee803ac0bf76de5b5',
+      'reference' => '8b5c03542d6f928439427069d09a415302a54142',
     ),
     'doctrine/instantiator' => 
     array (

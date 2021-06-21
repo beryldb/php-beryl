@@ -17,12 +17,31 @@ namespace Beryl\Base;
 class QueryResult
 {
     public $status;
+    public $raw;
     public $value;
     
     public function __construct($_status, $_value)
     {
-         $this->status = $_status;
-         $this->value = $_value;
+         if ($_status == BRLD_QUERY_OK)
+         {
+             $this->status = "OK";
+         }
+         else
+         {
+             $this->status = $_status;
+         }
+         
+         $this->raw = $_value;
+         
+         $str = explode(" ", $_value);
+         unset($str[0]);
+         unset($str[1]);
+         unset($str[2]);
+         unset($str[3]);
+         
+         $this->value = implode(" ", $str);
+         $this->value = substr($this->value, 1);
+         
     }    
     
     public function to_json()
