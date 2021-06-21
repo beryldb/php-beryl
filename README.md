@@ -1,5 +1,17 @@
 PHP-Beryl is **NOT PRODUCTION READY YET**.
 
+<a target="_blank" href="https://twitter.com/beryldb"><img src="https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40beryldb"></a>
+<a target="_blank" href="https://github.com/beryldb/php-beryl/actions"><img src="https://github.com/beryldb/php-beryl/workflows/PHP%20Composer/badge.svg?4"></a>
+<a target="_blank" href="https://github.com/beryldb/php-beryl/pulse" alt="Activity"> <img src="https://img.shields.io/github/commit-activity/m/beryldb/php-beryl" /></a>
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
+<br>
+
+
+This README is a brief introduction to PHP-Beryl. For extended information, you
+can visit our documentation site at [docs.beryl.dev](https://docs.beryl.dev/api/php/).
+
+![Logo](https://docs.beryl.dev/img/smaller.png??)
+
 ## Loading 
 
 PHP-beryl utilizes autoloading features of PHP in order to run its

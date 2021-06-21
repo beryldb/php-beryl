@@ -51,6 +51,16 @@ class QueryResult
          $this->value = implode(" ", $str);
          $this->value = substr($this->value, 1);
          
+         if ($_status == BRLD_QUERY_OK)
+         {
+             /* Remove comillas. */
+             
+             if ($this->lastcmd->command == "GET" || $this->lastcmd->command == "GETDEL" || $this->lastcmd->command == "GETSET" || $this->lastcmd->command == "HGET")
+             {
+                   $this->value = substr($this->value, 1, -1);
+             }
+         }
+         
     }    
     
     public function to_json()

@@ -18,9 +18,9 @@ $client = new Beryl\Connection\Client([
 
 //echo $client->flushdb()->code . "\n";
 
-//echo $client->set("a", "b2")->code. "\n";
+echo $client->set("a", "pico")->value. "\n";
 
-echo $client->del("a")->code .  "\n";
+echo $client->get("a")->value .  "\n";
 
 
 
