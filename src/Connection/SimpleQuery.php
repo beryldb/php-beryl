@@ -52,7 +52,7 @@ abstract class SimpleQuery implements CommandInterface
     public function Run()
     {
              $response = $this->client->send($this);
-             $result = new QueryResult($response->status, $response->simple);             
+             $result = new QueryResult($this, $response->status, $response->simple);             
              return $result;
              
     }

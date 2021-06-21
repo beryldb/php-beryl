@@ -86,6 +86,12 @@ If you would like to flush (reset) your current database:
 echo $client->flushdb();
 ```
 
+Alternatively, you may remove a single key:
+
+```
+echo $client->del("hello")->status. "\n";
+```
+
 ## Development
 
 Contributions to php-beryl are appreciated either in the form of pull requests for new features, 

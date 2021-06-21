@@ -18,13 +18,22 @@ class QueryResult
 {
     public $status;
     public $raw;
-    public $value;
+    public $lastcmd;
+    public $code;
     
-    public function __construct($_status, $_value)
+    public function __construct($_lastcmd, $_status, $_value)
     {
+         $this->lastcmd = $_lastcmd;
+
+         $this->code = $_status;
+
          if ($_status == BRLD_QUERY_OK)
          {
              $this->status = "OK";
+         }
+         else if ($_status == ERR_QUERY)
+         {
+             $this->status = "ERROR";
          }
          else
          {

@@ -20,11 +20,28 @@ class CustomQueryResult
     public $raw;
     public $value;
     public $lastcmd;
+    public $code;
     
     public function __construct($_lastcmd, $_status, $_value)
     {
          $this->lastcmd = $_lastcmd;
-         
+
+         $this->code = $_status;
+
+         if ($this->lastcmd->ok == $_status)
+         {
+             $this->status = "OK";
+             return;
+         }
+         else if (in_array($_status, $this->lastcmd->err))
+         {
+
+         }
+         else
+         {
+
+         }
+        
          $this->raw = $_value;
          
          $str = explode(" ", $_value);
@@ -33,8 +50,8 @@ class CustomQueryResult
          unset($str[1]);
          unset($str[2]);
 
-         $this->value = implode(" ", $str);
-         $this->value = substr($this->value, 1);
+         $this->status = implode(" ", $str);
+         $this->status = substr($this->status, 1);
          
     }    
     
