@@ -2,7 +2,7 @@ PHP-Beryl is **NOT PRODUCTION READY YET**.
 
 ## Loading 
 
-PHP-beryl utilizes the autoloading features of PHP in order to run its
+PHP-beryl utilizes autoloading features of PHP in order to run its
 files. If you are using Composer, autoloading should be managed automatically.
 
 ## Using
@@ -28,6 +28,9 @@ Installing dependencies:
 composer install
 ```
 
+## Running
+
+In order to run your instance, you must load autoload.php:
 
 ```
 <?php
