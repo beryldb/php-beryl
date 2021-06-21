@@ -18,12 +18,18 @@ $client = new Beryl\Connection\Client([
                    ]);
 
 
-/* Flush database. */
+/* Let's set key test and then remove it after a get request. */
+
+echo $client->set("test", "world")->value . "\n";
+echo $client->getdel("test")->value . "\r\n";
+
+/* Flush database (remove current database's content). */
 
 $client->flushdb();
 
-echo $client->set("hello", "world")->value;
-echo $client->get("hello")->value;
+echo $client->set("hello", "world")->value . "\n";
+echo $client->get("hello")->value . "\n";
+echo $client->del("hello")->value .  "\n";
 
 /* Find keys: offset 0, limit 3. */
 
@@ -38,5 +44,9 @@ foreach ($client->search("*")->list as $key)
 {
       echo $key . "\r\n";
 }
+
+/* You may also check what kind of data is a given key: */
+
+echo $client->type("hello")->value. "\r\n";
 
 ?>

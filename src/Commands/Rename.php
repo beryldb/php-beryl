@@ -15,10 +15,10 @@
 namespace Beryl\Commands;
 
 use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
+use Beryl\Connection\NonSimpleQuery;
 use Beryl\Base\Protocols;
 
-final class Rename extends SimpleQuery
+final class Rename extends NonSimpleQuery
 {
     public function __construct($client, $key, $dest)
     {

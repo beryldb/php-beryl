@@ -83,25 +83,35 @@ For instance, if you want to execute a basic key set:
 
 
 ```
-:$ php example.php
-
 echo $client->set("hello", "world")->status. "\n";
 echo $client->get("hello")->value . "\n";
+```
 
+This script will return:
+
+```
 OK
 "world"
+```
+
+In Beryl, different structues cannot hold the same variable name. In order
+to check what kind of data structure is a given key:
+
+```
+echo $client->type("a")->code
+KEY
 ```
 
 If you would like to flush (reset) your current database:
 
 ```
-echo $client->flushdb();
+echo $client->flushdb()->status;
 ```
 
-Alternatively, you may remove a single key:
+Alternatively, you may remove a single key instead of the entire database:
 
 ```
-echo $client->del("hello")->status. "\n";
+echo $client->del("hello")->code. "\n";
 ```
 
 ## Development

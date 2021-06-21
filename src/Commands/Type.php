@@ -15,17 +15,15 @@
 namespace Beryl\Commands;
 
 use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
+use Beryl\Connection\NonSimpleQuery;
 use Beryl\Base\Protocols;
 
-final class GetSet extends SimpleQuery
+final class Type extends NonSimpleQuery
 {
-    public $comillas = true;
-
-    public function __construct($client, $key, $value)
+    public function __construct($client, $key)
     {
-        $this->parameters = $key . ' "' . $value . '"';
-        $this->command = "GETSET";
+        $this->parameters = $key;
+        $this->command = "TYPE";
         
         parent::__construct($client, $this->command, $this->parameters);
     }

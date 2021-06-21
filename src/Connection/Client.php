@@ -208,7 +208,7 @@ class Client
       public function set($key, $value)
       {
              $cmd = new Commands\Set($this->client, $key, $value);
-             return $cmd->Run();
+             return $cmd->Run()->status;
       }
 
       public function get($key)
@@ -228,7 +228,6 @@ class Client
              $cmd = new Commands\SetTX($this->client, $key, $value);
              return $cmd->Run();
       }
-      
 
       public function count($key)
       {
@@ -302,6 +301,12 @@ class Client
       /*
        * Informational interface. 
        */
+
+      public function type($key)
+      {
+             $cmd = new Commands\Type($this->client, $key);
+             return $cmd->Run();
+      }
        
       public function commands()
       {
@@ -323,7 +328,7 @@ class Client
       public function whoami()
       {
              $cmd = new Commands\Whoami($this->client);
-             return $cmd->Run();
+             return $cmd->Run()->status;
       }
        
       public function pwd()

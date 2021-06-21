@@ -14,42 +14,33 @@
 
 namespace Beryl\Base;
 
-class CustomQueryResult
+class NonQueryResult
 {
     public $status;
     public $raw;
-    public $value;
     public $lastcmd;
-    public $code;
     
     public function __construct($_lastcmd, $_status, $_value)
     {
          $this->lastcmd = $_lastcmd;
 
-         $this->code = $_status;
-
-         if ($this->lastcmd->ok == $_status && $_status == BRLD_QUERY_OK)
+         if ($_status == ERR_QUERY)
          {
-             $this->status = "OK";
+             $this->value = "NULL";
              return;
          }
-         else if ($this->lastcmd->ok == BRLD_WHOAMI)
-         {
-            $str = explode(" ", $_value);
-            $this->status = $str[3];
-            return;
-         }
-        
-         $this->raw = $_value;
          
+         $this->code = $_status;
+
          $str = explode(" ", $_value);
-         
          unset($str[0]);
          unset($str[1]);
          unset($str[2]);
 
-         $this->status = implode(" ", $str);
-         $this->status = substr($this->status, 1);
+         $_value = implode(" ", $str);
+         $_value = substr($_value, 1);
+         
+         $this->value = $_value;
          
     }    
     

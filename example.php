@@ -12,32 +12,29 @@ $client = new Beryl\Connection\Client([
                    ]);
 
 
+
 /* Flush database. */
 
+//echo $client->set("peo", "x"). "\r\n";
+echo $client->get("a")->status . "\r\n";
+
+//return;
+
+//echo $client->whoami() . "\r\n";
+
+
+//echo $client->copy("a", "x")->value . "\r\n";
+//echo $client->get("x")->value .  "\n";
 //echo $client->flushdb()->status . "\n";
 
-echo $client->hset("a22", "b", "pico")->value. "\n";
-
-echo $client->hget("a22", "b")->value .  "\n";
-
-//echo $client->set("a2", "b")->value .  "\n";
-//echo $client->set("a23", "b")->value .  "\n";
+//echo $client->type("a22")->value . "\r\n";
 
 return;
 
 
-
+echo $client->set("a2", "b")->value .  "\n";
+echo $client->del("a2")->value .  "\n";
 
 return;
-
-//print_r($client->get("a", "b"));
-
-/* Find keys: offset 0, limit 3. */
-
-print_r($client->find("*", 0, 3));
-
-/* Find values: offset 0, limit 3. */
-
-print_r($client->search("*", 0, 3));
 
 ?>

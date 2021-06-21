@@ -27,17 +27,13 @@ class QueryResult
 
          $this->code = $_status;
 
-         if ($_status == BRLD_QUERY_OK)
+         if ($this->lastcmd->ok == $_status && $_status == BRLD_QUERY_OK)
          {
              $this->status = "OK";
          }
          else if ($_status == ERR_QUERY)
          {
              $this->status = "ERROR";
-         }
-         else
-         {
-             $this->status = $_status;
          }
          
          $this->raw = $_value;

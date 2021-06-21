@@ -14,6 +14,7 @@
 
 namespace Beryl\Connection;
 
+define("DBL_NOT_FOUND", 5);
 define("BRLD_SHUTTING_DOWN", 292);
 define("BRLD_EXP_DELETED", 183);
 define("BRLD_CURRENT_USE", 165);
