@@ -71,9 +71,12 @@ For instance, if you want to execute a basic key set:
 
 
 ```
+:$ php example.php
+
 echo $client->set("hello", "world")->status. "\n";
-OK
 echo $client->get("hello")->value . "\n";
+
+OK
 "world"
 ```
 
