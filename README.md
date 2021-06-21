@@ -40,7 +40,6 @@ require __DIR__.'/vendor/autoload.php';
 When creating a client instance without any parameter, php-beryl uses
 host ``127.0.0.1`` and port ``6378``.
 
-
 ```
 <?php
 
@@ -59,6 +58,24 @@ $client = new Beryl\Connection\Client([
 ?>
 ```
 
+## Simple query
+
+Most php-beryl function have the same name as any other BerylDB function.
+For instance, if you want to execute a basic key set:
+
+
+```
+echo $client->set("hello", "world")->status. "\n";
+OK
+echo $client->get("hello")->value . "\n";
+"world"
+```
+
+If you would like to flush (reset) your current database:
+
+```
+echo $client->flushdb();
+```
 
 ## Development
 

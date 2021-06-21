@@ -16,8 +16,15 @@ $client = new Beryl\Connection\Client([
 
 //print_r($client->flushdb());
 
+echo $client->flushdb()->value . "\n";
+
 echo $client->set("a2", "b2")->status. "\n";
 echo $client->get("a2")->value . "\n";
+
+echo $client->hset("a3", "b2", "lala")->status. "\n";
+echo $client->hget("a3", "b2")->value. "\n";
+
+
 
 return;
 

@@ -15,6 +15,7 @@
 namespace Beryl\Connection;
 
 use Beryl\Base\Command as CommandInterface;
+use Beryl\Base\CustomQueryResult;
 
 abstract class CustomCommand implements CommandInterface
 {
@@ -49,21 +50,7 @@ abstract class CustomCommand implements CommandInterface
     public function Run()
     {
              $response = $this->client->send($this);
-
-             $result = [];
-             $result['code'] = $response->status;
-             
-             if ($response->status == $this->ok)
-             {
-                   $result['status'] = INTERNAL_OK;
-             }
-
-             if (in_array($response->status, $this->err))
-             {
-                   $result['status'] = INTERNAL_ERROR;
-             }
-            
-             $result['value'] =  $response->simple;
+             $result = new CustomQueryResult($this, $response->status, $response->simple);             
              return $result;
 
     }
