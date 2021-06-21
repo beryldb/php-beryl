@@ -54,12 +54,15 @@ $client = new Beryl\Connection\Client([
                     'timeout' => 30, 
                     'login' => 'root', 
                     'password' => 'default',
-                    'debug' => false
+		    'debug' => false
                    ]);
-
 
 ?>
 ```
+
+When ``debug`` is set to true, everything returning from the remote server
+will be printed. This option is set to false by default, and it should be
+that way, unless you are implementing a new command in beryl.
 
 ## Simple query
 
