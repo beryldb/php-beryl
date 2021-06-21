@@ -24,7 +24,7 @@ final class Search extends ListCommand
     
     public function __construct($client, $key, $offset, $limit)
     {
-        $this->parameters = $key . " " . $offset . " " . $limit;
+        $this->parameters = "\"" . $key . "\" " . $offset . " " . $limit;
         $this->command = "SEARCH";
         
         parent::__construct($client, $this->command, $this->parameters);

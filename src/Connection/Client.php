@@ -547,7 +547,7 @@ class Client
              return $cmd->Run();
       }
 
-      public function lget($key, $offset = 0, $limit = 100)
+      public function lget($key, $offset = 0, $limit = -1)
       {
              $cmd = new Commands\LGet($this->client, $key, $offset, $limit);
              return $cmd->Run();

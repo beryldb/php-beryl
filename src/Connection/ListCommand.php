@@ -12,9 +12,10 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Channel;
+namespace Beryl\Connection;
 
 use Beryl\Base\Command as CommandInterface;
+use Beryl\Base\ListResult;
 
 abstract class ListCommand implements CommandInterface
 {
@@ -23,7 +24,8 @@ abstract class ListCommand implements CommandInterface
     private $client;
     
     public $iter = true;
-
+    public $dual = false;
+    
     public $end = BRLD_END_LIST;
     public $start = BRLD_START_LIST;
     public $item = BRLD_ITEM;
@@ -46,10 +48,14 @@ abstract class ListCommand implements CommandInterface
     {
              $response = $this->client->send($this);
 
+             $result = new ListResult($this);
+             
              if ($response->status == $this->end)
              {
-                   return $response->stack;
+                   $result->append_stack($response->stack);
              }
+             
+             return $result;
     }
     
 }

@@ -34,16 +34,23 @@ class Server implements ServerInterface
     public  $buffer = [];
     public  $stack = [];
     public  $counter = 0;
-    public $me;
+    public  $me;
     public  $reply;
     public  $lastcmd;
     public  $code = 0;
     public  $parser;
-    public $debug;
+    public  $debug;
+
+   /* 
+    * Constructor.
+    * 
+    * @parameters:
+    *
+    *         · $args: List of arguments used to connect to server.
+    */    
 
     public function __construct($args)
     {
-          
          $this->host = $args['host'];
          $this->port = $args['port'];
          $this->max_timeout = $args['timeout'];
@@ -67,6 +74,18 @@ class Server implements ServerInterface
          $this->clearBuffer();
     }
 
+   /* 
+    * Sends a command to the server.
+    * 
+    * @parameters:
+    *
+    *         · CommandInterface: Command to send.
+    * 
+    * @return:
+    *
+    *         · socket data: Stream of data. 
+    */    
+
     public function send(CommandInterface $command)
     {
          if (!$this->resource) 
@@ -78,6 +97,14 @@ class Server implements ServerInterface
          fwrite($this->resource, $command);
          return $this->read();
     }
+
+   /* 
+    * Sends data to server without awaiting for a return.
+    * 
+    * @parameters:
+    *
+    *         · CommandInterface: Command to send.
+    */    
 
     public function sendraw(CommandInterface $command)
     {
@@ -164,8 +191,6 @@ class Server implements ServerInterface
                     $this->buffer = [];
                     $this->stack = [];
                     return $response;
-                    
-                    break;
             }
 
             if ($this->lastcmd->iter && ($this->code == $this->lastcmd->item) && $stacking)

@@ -55,7 +55,7 @@ class QueryResult
          {
              /* Remove comillas. */
              
-             if ($this->lastcmd->command == "GET" || $this->lastcmd->command == "GETDEL" || $this->lastcmd->command == "GETSET" || $this->lastcmd->command == "HGET")
+             if (isset($this->lastcmd->comillas) && $this->lastcmd->comillas) 
              {
                    $this->value = substr($this->value, 1, -1);
              }

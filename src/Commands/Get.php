@@ -20,6 +20,8 @@ use Beryl\Base\Protocols;
 
 final class Get extends SimpleQuery
 {
+    public $comillas = true;
+    
     public function __construct($client, $key)
     {
         $this->parameters = $key;

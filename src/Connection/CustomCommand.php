@@ -52,7 +52,6 @@ abstract class CustomCommand implements CommandInterface
              $response = $this->client->send($this);
              $result = new CustomQueryResult($this, $response->status, $response->simple);             
              return $result;
-
     }
     
 }

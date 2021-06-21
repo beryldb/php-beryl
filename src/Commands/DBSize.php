@@ -22,10 +22,8 @@ final class DBSize extends SimpleQuery
 {
     public function __construct($client)
     {
-        $this->parameters;
         $this->command = "DBSIZE";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+        parent::__construct($client, $this->command, "");
     }
 }
 

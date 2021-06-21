@@ -14,13 +14,17 @@ $client = new Beryl\Connection\Client([
 
 /* Flush database. */
 
-//print_r($client->flushdb());
+//echo $client->flushdb()->status . "\n";
 
-//echo $client->flushdb()->code . "\n";
+echo $client->hset("a22", "b", "pico")->value. "\n";
 
-echo $client->set("a", "pico")->value. "\n";
+echo $client->hget("a22", "b")->value .  "\n";
 
-echo $client->get("a")->value .  "\n";
+//echo $client->set("a2", "b")->value .  "\n";
+//echo $client->set("a23", "b")->value .  "\n";
+
+return;
+
 
 
 

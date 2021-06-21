@@ -20,6 +20,8 @@ use Beryl\Base\Protocols;
 
 final class HGet extends SimpleQuery
 {
+    public $comillas = true;
+    
     public function __construct($client, $key, $hash)
     {
         $this->parameters = $key . ' ' . $hash;

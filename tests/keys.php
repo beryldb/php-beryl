@@ -10,8 +10,6 @@
  
 require __DIR__.'/../vendor/autoload.php';
 
-use Beryl\Connection;
-
 $client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
@@ -24,15 +22,21 @@ $client = new Beryl\Connection\Client([
 
 $client->flushdb();
 
-echo $client->set("a2", "b2")->to_json();
-echo $client->get("a2")->to_json();
+echo $client->set("hello", "world")->value;
+echo $client->get("hello")->value;
 
 /* Find keys: offset 0, limit 3. */
 
-print_r($client->find("*", 0, 3));
+foreach ($client->find("*")->items as $key => $value)
+{
+      echo $key . " => " . $value . "\r\n";
+}
 
-/* Find values: offset 0, limit 3. */
+/* Searches values: offset 0, limit 3. */
 
-print_r($client->search("*", 0, 3));
+foreach ($client->search("*")->list as $key)
+{
+      echo $key . "\r\n";
+}
 
 ?>

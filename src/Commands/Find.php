@@ -24,9 +24,10 @@ final class Find extends ListCommand
     
     public function __construct($client, $key, $offset, $limit)
     {
-        $this->parameters = $key . " " . $offset . " " . $limit;
+        $this->parameters = "\"" . $key . "\" " . $offset . " " . $limit;
         $this->command = "FIND";
-        
+        $this->dual = true;
+          
         parent::__construct($client, $this->command, $this->parameters);
     }
 }
