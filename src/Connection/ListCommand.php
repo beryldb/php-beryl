@@ -48,14 +48,10 @@ abstract class ListCommand implements CommandInterface
     {
              $response = $this->client->send($this);
 
-             $result = new ListResult($this);
-             
              if ($response->status == $this->end)
              {
-                   $result->append_stack($response->stack);
+                   return $response->stack;
              }
-             
-             return $result;
     }
     
 }

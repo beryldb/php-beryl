@@ -9,9 +9,7 @@
  
 require __DIR__.'/../vendor/autoload.php';
 
-use Beryl\Connection;
-
-$client = new Connection\Server([  
+$client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'timeout' => 30, 
@@ -19,15 +17,21 @@ $client = new Connection\Server([
                     'password' => 'default'
                    ]);
 
+foreach ($client->modules()->list as $mod)
+{
+      echo $mod . "\r\n";
+}
 
-print_r($client->version());
-print_r($client->me());
-print_r($client->whoami());
-print_r($client->pwd());
-print_r($client->dbsize());
-print_r($client->using($client->me()));
-print_r($client->time());
-print_r($client->epoch());
-print_r($client->myagent());
+foreach ($client->commands()->list as $cmd)
+{
+      echo $cmd . "\r\n";
+}
+
+echo $client->me() . "\n";
+echo $client->whoami() . "\n";
+echo $client->pwd() . "\n";
+echo $client->epoch() . "\n";
+echo $client->time() . "\n";
+echo $client->dbsize() . "\n";
 
 ?>

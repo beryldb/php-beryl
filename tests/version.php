@@ -12,21 +12,11 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Commands;
+/* Returns API version. */
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
+require __DIR__.'/../vendor/autoload.php';
 
-final class Epoch extends CustomCommand
-{
-    public $ok = BRLD_LOCAL_EPOCH;
-    public $err = array();
-      
-    public function __construct($client)
-    {
-        $this->command = "EPOCH";
-        parent::__construct($this->ok, $this->err, $client, $this->command, "");
-    }
-}
+$version = new Beryl\Connection\Version();
+echo $version->Get() . "\n";
 
-
+?>

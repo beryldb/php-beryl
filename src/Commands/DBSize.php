@@ -14,11 +14,11 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\SimpleQuery;
+use Beryl\Connection\NonSimpleQuery;
 use Beryl\Base\Response;
 use Beryl\Base\Protocols;
 
-final class DBSize extends SimpleQuery
+final class DBSize extends NonSimpleQuery
 {
     public function __construct($client)
     {

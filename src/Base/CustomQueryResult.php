@@ -17,10 +17,11 @@ namespace Beryl\Base;
 class CustomQueryResult
 {
     public $status;
-    public $raw;
     public $value;
-    public $lastcmd;
     public $code;
+    
+    private $raw;
+    private $lastcmd;
     
     public function __construct($_lastcmd, $_status, $_value)
     {
@@ -33,23 +34,50 @@ class CustomQueryResult
              $this->status = "OK";
              return;
          }
-         else if ($this->lastcmd->ok == BRLD_WHOAMI)
+         
+         switch ($this->lastcmd->ok)
          {
-            $str = explode(" ", $_value);
-            $this->status = $str[3];
-            return;
-         }
-        
-         $this->raw = $_value;
+              case BRLD_WHOAMI:
+              {
+                     $str = explode(" ", $_value);
+                     $this->status = $str[3];
+                     return;
+              }
+              
+              case BRLD_CURRENT_DIR:
+              {
+                     $str = explode(" ", $_value);
+                     $this->status = $str[3];
+                     return;
+              }
+              
+              case BRLD_LOCAL_TIME:
+              case BRLD_LOCAL_EPOCH:
+              {
+                     $str = explode(" ", $_value);
+                     unset($str[0]);
+                     unset($str[1]);
+                     unset($str[2]);
+                     unset($str[3]);
          
-         $str = explode(" ", $_value);
-         
-         unset($str[0]);
-         unset($str[1]);
-         unset($str[2]);
+                     $this->status = implode(" ", $str);
+                     $this->status = substr($this->status, 1);
+                     return;
+              }
+              
+              default:
+              {
+                     $this->raw = $_value;
+                     $str = explode(" ", $_value);
+                     
+                     unset($str[0]);
+                     unset($str[1]);
+                     unset($str[2]);
 
-         $this->status = implode(" ", $str);
-         $this->status = substr($this->status, 1);
+                     $this->status = implode(" ", $str);
+                     $this->status = substr($this->status, 1);
+              }
+         }
          
     }    
     

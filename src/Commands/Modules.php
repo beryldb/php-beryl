@@ -28,10 +28,9 @@ final class Modules extends CustomListCommand
     
     public function __construct($client)
     {
-        $this->parameters;
         $this->command = "MODULES";
         
-        parent::__construct($this->start, $this->end, $this->item, $client, $this->command, $this->parameters);
+        parent::__construct($this->start, $this->end, $this->item, $client, $this->command, "");
     }
 }
 

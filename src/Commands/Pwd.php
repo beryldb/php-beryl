@@ -24,10 +24,8 @@ final class Pwd extends CustomCommand
       
     public function __construct($client)
     {
-        $this->parameters = "";
         $this->command = "PWD";
-        
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+        parent::__construct($this->ok, $this->err, $client, $this->command, "");
     }
 }
 

@@ -99,7 +99,7 @@ class Client
       public function dbsize()
       {
              $cmd = new Commands\DBSize($this->client);
-             return $cmd->Run();
+             return $cmd->Run()->value;
       }
 
       public function use($id)
@@ -208,7 +208,7 @@ class Client
       public function set($key, $value)
       {
              $cmd = new Commands\Set($this->client, $key, $value);
-             return $cmd->Run()->status;
+             return $cmd->Run();
       }
 
       public function get($key)
@@ -334,7 +334,7 @@ class Client
       public function pwd()
       {
              $cmd = new Commands\Pwd($this->client);
-             return $cmd->Run();
+             return $cmd->Run()->status;
       }
       
       public function modules()
@@ -352,13 +352,13 @@ class Client
       public function time()
       {
              $cmd = new Commands\Time($this->client);
-             return $cmd->Run();
+             return $cmd->Run()->status;
       }
       
       public function epoch()
       {
              $cmd = new Commands\Epoch($this->client);
-             return $cmd->Run();
+             return $cmd->Run()->status;
       }
 
       public function myagent()

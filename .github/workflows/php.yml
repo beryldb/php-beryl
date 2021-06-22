@@ -25,3 +25,5 @@ jobs:
           ${{ runner.os }}-php-
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
+    - name: Check version
+      run: php tests/version.php

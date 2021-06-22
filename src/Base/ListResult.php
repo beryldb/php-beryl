@@ -34,7 +34,7 @@ class ListResult
 
         $this->stack = $_stack;
         
-        if ($this->lastcmd->dual)
+        if (isset($this->lastcmd->dual) && $this->lastcmd->dual)
         {
            foreach ($_stack as $item)
            {

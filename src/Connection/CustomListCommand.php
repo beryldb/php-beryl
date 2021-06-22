@@ -12,9 +12,10 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Channel;
+namespace Beryl\Connection;
 
 use Beryl\Base\Command as CommandInterface;
+use Beryl\Base\ListResult;
 
 abstract class CustomListCommand implements CommandInterface
 {
@@ -49,10 +50,14 @@ abstract class CustomListCommand implements CommandInterface
     {
              $response = $this->client->send($this);
 
+             $result = new ListResult($this);
+             
              if ($response->status == $this->end)
              {
-                   return $response->stack;
+                   $result->append_stack($response->stack);
              }
+             
+             return $result;
     }
     
 }

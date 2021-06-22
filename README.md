@@ -114,6 +114,21 @@ Alternatively, you may remove a single key instead of the entire database:
 echo $client->del("hello")->code. "\n";
 ```
 
+## Protocols
+
+Although calling functions with the ->status object should enough, in some
+cases you may be required to check [Beryl's
+protocol](https://github.com/beryldb/beryldb/blob/unstable/include/protocols.h) in order to get an exact 
+response from the server:
+
+```
+echo $client->get("hello")->code . "\n"; => 164 (BRLD_QUERY_OK)
+echo $client->get("hello")->status . "\n"; => OK
+echo $client->get("hello")->value . "\n"; => World
+```
+
+Same response, different way to check your query's response.
+
 ## Development
 
 Contributions to php-beryl are appreciated either in the form of pull requests for new features, 

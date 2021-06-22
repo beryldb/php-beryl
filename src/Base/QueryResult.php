@@ -17,9 +17,10 @@ namespace Beryl\Base;
 class QueryResult
 {
     public $status;
-    public $raw;
-    public $lastcmd;
     public $code;
+    
+    private $raw;
+    private $lastcmd;
     
     public function __construct($_lastcmd, $_status, $_value)
     {
@@ -34,6 +35,15 @@ class QueryResult
          else if ($_status == ERR_QUERY)
          {
              $this->status = "ERROR";
+         $str = explode(" ", $_value);
+         unset($str[0]);
+         unset($str[1]);
+         unset($str[2]);
+
+         $this->value = implode(" ", $str);
+         $this->value = substr($this->value, 1);
+
+             return;
          }
          
          $this->raw = $_value;

@@ -11,8 +11,6 @@
  
 require __DIR__.'/../vendor/autoload.php';
 
-use Beryl\Connection;
-
 $client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
@@ -25,14 +23,15 @@ $client = new Beryl\Connection\Client([
 
 $client->flushdb();
 
-print_r($client->hset("a", "b", "c"));
-print_r($client->hset("a", "b2", "c"));
-print_r($client->hset("a2", "b3", "c"));
-print_r($client->hget("a", "b"));
+echo $client->hset("a", "b2", "c")->value . "\n";
+echo $client->hset("a", "b3", "c")->value . "\n";
+echo $client->hget("a", "b")->value . "\n";
 
 /* Find maps: offset 0, limit 3. */
 
-print_r($client->hsearch("*", 0, 3));
-print_r($client->hkeys("a", 0, 3));
+foreach ($client->hkeys("a")->list as $key)
+{
+      echo $key . "\r\n";
+}
 
 ?>
