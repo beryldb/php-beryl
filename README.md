@@ -66,15 +66,10 @@ $client = new Beryl\Connection\Client([
                     'timeout' => 30, 
                     'login' => 'root', 
                     'password' => 'default',
-		    'debug' => false
                    ]);
 
 ?>
 ```
-
-When ``debug`` is set to true, everything returning from the remote server
-will be printed. This option is set to false by default, and it should be
-that way, unless you are implementing a new command in beryl.
 
 ## Simple query
 
@@ -83,8 +78,8 @@ For instance, if you want to execute a basic key set:
 
 
 ```
-echo $client->set("hello", "world")->status. "\n";
-echo $client->get("hello")->value . "\n";
+echo $client->set("hello", "world")->status;
+echo $client->get("hello")->value;
 ```
 
 This script will return:
@@ -111,8 +106,21 @@ echo $client->flushdb()->status;
 Alternatively, you may remove a single key instead of the entire database:
 
 ```
-echo $client->del("hello")->code. "\n";
+echo $client->del("hello")->code;
 ```
+
+## Debugging
+
+If you wish to connect Beryl in debugging mode, you need to pass this
+argument when connecting:
+
+```
+'debug' => true
+```
+
+When ``debug`` is set to true, everything returning from the remote server
+will be printed. This option is set to false by default, and it should be
+ethat way, unless you are implementing a new command in Beryl.
 
 ## Protocols
 
@@ -122,9 +130,9 @@ protocol](https://github.com/beryldb/beryldb/blob/unstable/include/protocols.h) 
 response from the server:
 
 ```
-echo $client->get("hello")->code . "\n"; => 164 (BRLD_QUERY_OK)
-echo $client->get("hello")->status . "\n"; => OK
-echo $client->get("hello")->value . "\n"; => World
+echo $client->get("hello")->code; // 164 (BRLD_QUERY_OK)
+echo $client->get("hello")->status; // OK
+echo $client->get("hello")->value; // World
 ```
 
 Same response, different way to check your query's response.

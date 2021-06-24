@@ -12,23 +12,42 @@ $client = new Beryl\Connection\Client([
                    ]);
 
 
-
-/* Flush database. */
-
-/*
-echo $client->pwd() . "\n";
+/*echo $client->pwd() . "\n";
 
 echo $client->time() . "\n";
 echo $client->epoch() . "\n";
-
-
-return;
 */
 
-echo $client->get("hello")->code . "\n";
-echo $client->get("hello")->status . "\n";
-echo $client->get("hello")->value ."\n";
+/* Flush database. */
 
+//$client->flushdb();
+
+
+//echo $client->mset("a", "b", "d")->value . "\n";
+
+foreach ($client->mget("a")->list as $key)
+{
+      echo $key . "\r\n";
+}
+
+return;
+
+echo $client->hsetnx("a", "b", "d")->value . "\n";
+echo $client->hget("a", "b")->value . "\n";
+
+
+foreach ($client->hkeys("a")->list as $key)
+{
+      echo $key . "\r\n";
+}
+
+/*echo $client->expire("a", 200)->status .  "\n";
+echo $client->ttl("a")->value .  "\n";
+*/
+/*echo $client->hset("hello2", "a", "world")->status . "\n";
+echo $client->hdel("hello2", "a")->value . "\n";
+echo $client->hget("hello2", "a")->value . "\n";
+*/
 return;
 
 

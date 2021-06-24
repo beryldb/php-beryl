@@ -52,8 +52,7 @@ class QueryResult
          unset($str[0]);
          unset($str[1]);
          unset($str[2]);
-         unset($str[3]);
-         
+     
          $this->value = implode(" ", $str);
          $this->value = substr($this->value, 1);
          

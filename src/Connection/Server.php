@@ -24,7 +24,7 @@ use Beryl\Commands\Handler;
 class Server implements ServerInterface
 {
     private $resource;
-    private $lastping;
+    public $last_ping = 0;
     private $host;
     private $port;
     private $errorNo;
@@ -40,6 +40,7 @@ class Server implements ServerInterface
     public  $code = 0;
     public  $parser;
     public  $debug;
+    
 
    /* 
     * Constructor.
@@ -69,7 +70,7 @@ class Server implements ServerInterface
          $this->connect();
          $this->sendraw(new Handler('AGENT', 'php1'));
          $this->sendraw(new Handler('AUTH', $args['password']));
-
+         
          $response = $this->send(new Handler('LOGIN', $args['login']));
          $this->clearBuffer();
     }
@@ -116,11 +117,6 @@ class Server implements ServerInterface
         fwrite($this->resource, $command);
     }
     
-    public function get_last_ping()
-    {
-        return $this->lastping;
-    }
-    
     public function read() 
     {
         $stacking = false;
@@ -133,7 +129,7 @@ class Server implements ServerInterface
             {            
                 echo $message . "\r\n";
             }
-
+            
             $this->code = $str[1];
 
             if ($this->code == ERR_WRONG_PASS)
@@ -199,8 +195,6 @@ class Server implements ServerInterface
                   $this->stack[$this->counter] = $message;
                   continue;
             }
-            
-            
 
             /* Connected */
 

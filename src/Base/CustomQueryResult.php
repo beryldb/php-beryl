@@ -37,6 +37,21 @@ class CustomQueryResult
          
          switch ($this->lastcmd->ok)
          {
+              case BRLD_TTL:
+
+                     $this->status = "EXPIRE";
+                     $this->raw = $_value;
+                     $str = explode(" ", $_value);
+
+                     unset($str[0]);
+                     unset($str[1]);
+                     unset($str[2]);
+
+                     $this->value = implode(" ", $str);
+                     $this->value = substr($this->value, 1);
+                   
+              break;
+
               case BRLD_WHOAMI:
               {
                      $str = explode(" ", $_value);

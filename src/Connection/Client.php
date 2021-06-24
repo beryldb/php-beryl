@@ -80,7 +80,19 @@ class Client
       {
             parent::connect();
       }	
-      
+
+      /* 
+       * Returns last known ping.
+       * 
+       * @return:
+       *
+       *         · microtime.
+       */    
+    
+      public function get_last_ping()
+      {
+           return $this->client->last_ping;
+      }
 
       /* Server functionalities. */
       
@@ -222,6 +234,12 @@ class Client
              $cmd = new Commands\SetNX($this->client, $key, $value);
              return $cmd->Run();
       }
+
+      public function hsetnx($key, $hesh, $value)
+      {
+             $cmd = new Commands\HSetNX($this->client, $key, $hesh, $value);
+             return $cmd->Run();
+      }
       
       public function settx($key, $value)
       {
@@ -297,7 +315,21 @@ class Client
              $cmd = new Commands\Logout($this->client, $instance, $reason);
              return $cmd->Run();
       }
-       
+      
+      /* multi maps */
+      
+      public function mset($key, $hash, $value)
+      {
+             $cmd = new Commands\MSet($this->client, $key, $hash, $value);      
+             return $cmd->Run();
+      }
+      
+      public function mget($key, $offset = 0, $limit = -1)
+      {
+             $cmd = new Commands\MGet($this->client, $key, $offset, $limit);      
+             return $cmd->Run();
+      }
+      
       /*
        * Informational interface. 
        */

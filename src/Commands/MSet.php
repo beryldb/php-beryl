@@ -12,19 +12,21 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Connection;
+namespace Beryl\Commands;
 
-class Version
+use Beryl\Base\Response;
+use Beryl\Connection\SimpleQuery;
+use Beryl\Base\Protocols;
+
+final class MSet extends SimpleQuery
 {
-    public function __construct()
+    public function __construct($client, $key, $hash, $value)
     {
-    
-    }
-    
-    public function Get()
-    {
-         return "php-beryl-0.0.1";
+        $this->parameters = $key . ' ' . $hash . ' "' . $value . '"';
+        $this->command = "MSET";
+        
+        parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-?>
+
