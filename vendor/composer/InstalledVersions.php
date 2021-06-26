@@ -27,24 +27,24 @@ class InstalledVersions
 private static $installed = array (
   'root' => 
   array (
-    'pretty_version' => '1.0.x-dev',
-    'version' => '1.0.9999999.9999999-dev',
+    'pretty_version' => '0.0.1',
+    'version' => '0.0.1.0',
     'aliases' => 
     array (
     ),
-    'reference' => '8b5c03542d6f928439427069d09a415302a54142',
+    'reference' => NULL,
     'name' => 'beryldb/php-beryl',
   ),
   'versions' => 
   array (
     'beryldb/php-beryl' => 
     array (
-      'pretty_version' => '1.0.x-dev',
-      'version' => '1.0.9999999.9999999-dev',
+      'pretty_version' => '0.0.1',
+      'version' => '0.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '8b5c03542d6f928439427069d09a415302a54142',
+      'reference' => NULL,
     ),
     'doctrine/instantiator' => 
     array (
@@ -178,12 +178,12 @@ private static $installed = array (
     ),
     'phpunit/phpunit' => 
     array (
-      'pretty_version' => '9.5.5',
-      'version' => '9.5.5.0',
+      'pretty_version' => '9.5.6',
+      'version' => '9.5.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => '89ff45ea9d70e35522fb6654a2ebc221158de276',
+      'reference' => 'fb9b8333f14e3dce976a60ef6a7e05c7c7ed8bfb',
     ),
     'sebastian/cli-parser' => 
     array (
@@ -313,12 +313,12 @@ private static $installed = array (
     ),
     'sebastian/type' => 
     array (
-      'pretty_version' => '2.3.2',
-      'version' => '2.3.2.0',
+      'pretty_version' => '2.3.4',
+      'version' => '2.3.4.0',
       'aliases' => 
       array (
       ),
-      'reference' => '0d1c587401514d17e8f9258a27e23527cb1b06c1',
+      'reference' => 'b8cd8a1c753c90bc1a0f5372170e3e489136f914',
     ),
     'sebastian/version' => 
     array (
