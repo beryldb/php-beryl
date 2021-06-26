@@ -68,11 +68,8 @@ class Server implements ServerInterface
          $this->errorNo = null;
          $this->error_message = '';
          $this->connect();
-         $this->sendraw(new Handler('AGENT', 'php1'));
-         $this->sendraw(new Handler('AUTH', $args['password']));
          
-         $response = $this->send(new Handler('LOGIN', $args['login']));
-         $this->clearBuffer();
+         $this->send(new Handler('ILOGIN', 'php1' . ' ' . $args['password'] . ' ' . $args['login']));
     }
 
    /* 
@@ -201,6 +198,8 @@ class Server implements ServerInterface
             if ($this->code == BRLD_CONNECTED)
             {
                      $this->me = $str[2];
+                     //echo "Connected";
+                     $this->buffer = [];
                      break;
             }
             

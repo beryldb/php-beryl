@@ -63,6 +63,12 @@ class ListResult
               
                  $format = implode(" ", $str);
                  $format = substr($format, 1);
+                 
+             if (isset($this->lastcmd->comillas) && $this->lastcmd->comillas) 
+             {
+                   $format = substr($format, 1, -1);
+             }
+                 
                  array_push($this->list, $format);
            }
               

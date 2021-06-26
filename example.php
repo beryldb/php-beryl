@@ -12,18 +12,18 @@ $client = new Beryl\Connection\Client([
                    ]);
 
 
-/*echo $client->pwd() . "\n";
+
+echo $client->pwd() . "\n";
 
 echo $client->time() . "\n";
 echo $client->epoch() . "\n";
-*/
 
 /* Flush database. */
 
 //$client->flushdb();
 
 
-//echo $client->mset("a", "b", "d")->value . "\n";
+echo $client->mset("a", "b", "d")->value . "\n";
 
 foreach ($client->mget("a")->list as $key)
 {

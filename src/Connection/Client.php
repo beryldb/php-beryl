@@ -330,6 +330,12 @@ class Client
              return $cmd->Run();
       }
       
+      public function miter($key, $hesh, $offset = 0, $limit = -1)
+      {
+             $cmd = new Commands\MIter($this->client, $key, $hesh, $offset, $limit);      
+             return $cmd->Run();
+      }
+      
       /*
        * Informational interface. 
        */
