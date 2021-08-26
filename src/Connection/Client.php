@@ -397,6 +397,12 @@ class Client
                 return $cmd->Run();
           }
 
+          public function shutdown()
+          {
+                $cmd = new Commands\Shutdown($this->client);
+                return $cmd->Run();
+          }
+
           public function restart()
           {
                 $cmd = new Commands\Restart($this->client);
@@ -738,6 +744,12 @@ class Client
           public function epoch()
           {
                $cmd = new Commands\Epoch($this->client);
+               return $cmd->Run();
+          }
+
+          public function pwd()
+          {
+               $cmd = new Commands\PWD($this->client);
                return $cmd->Run();
           }
 

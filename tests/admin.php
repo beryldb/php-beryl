@@ -17,6 +17,8 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
+echo $client->pwd()                . "\n"; /* OK */
+
 echo $client->flushdb()            . "\n"; /* OK */
 echo $client->flushall()           . "\n"; /* OK */
 
@@ -46,4 +48,10 @@ if ($results)
      }
 }
 
-echo $client->restart()            . "\n"; /* OK */
+/* Restarts server */
+
+//echo $client->restart()            . "\n"; /* OK */
+
+/* Shutdowns server */
+
+//echo $client->shutdown()           . "\n"; /* OK */
