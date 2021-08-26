@@ -13,21 +13,15 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class Persist extends CustomCommand
+final class Persist extends BrldCommand
 {
-    public $ok = BRLD_PERSIST;
-    public $err = array(ERR_PERSIST);
-    
     public function __construct($client, $key)
     {
-        $this->parameters = $key;
-        $this->command = "PERSIST";
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+         $this->command    = "PERSIST";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

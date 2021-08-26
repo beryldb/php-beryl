@@ -13,22 +13,15 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class Version extends CustomCommand
+final class Version extends BrldCommand
 {
-    public $ok = BRLD_VERSION;
-    public $err = array();
-      
     public function __construct($client)
     {
-        $this->parameters = "";
-        $this->command = "VERSION";
-        
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+        $this->command    = "VERSION";
+        parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

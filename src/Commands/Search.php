@@ -14,21 +14,21 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\ListCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\CustomListCommand;
+use Beryl\Base\Format;
 
-final class Search extends ListCommand
+final class Search extends CustomListCommand
 {
-    private $command;
-    private $parameters;
+    public $dual     = true;
+    public $comillas = true;
     
     public function __construct($client, $key, $offset, $limit)
     {
-        $this->parameters = "\"" . $key . "\" " . $offset . " " . $limit;
-        $this->command = "SEARCH";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+         $this->parameters = Format::Limits($key, $offset, $limit);
+         $this->command    = "SEARCH";
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
 
+?>

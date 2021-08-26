@@ -13,20 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class RenameNX extends SimpleQuery
+final class RenameNX extends BrldCommand
 {
-    public function __construct($client, $key, $dest)
+    public function __construct($client, $key, $value)
     {
-        $this->parameters = $key . ' ' . $dest;
-        $this->command = "RENAMENX";
+         $this->parameters = Format::Basic($key, $value);
+         $this->command    = "RENAMENX";
         
-        parent::__construct($client, $this->command, $this->parameters);
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-
+?>

@@ -16,16 +16,17 @@ namespace Beryl\Base;
 
 class Response
 {
-   public $status;
-   public $simple;
-   public $message = [];
-   public $stack = [];
+    public $message = [];
+    public $stack   = [];
 
-   public function __construct($_status, $_message)
-   {
+    public $status;
+    public $simple;
+
+    public function __construct($_status, $_message)
+    {
         $this->status = $_status;
         $this->message = $_message;
-   }
-   
-   
+    }
 }
+
+?>

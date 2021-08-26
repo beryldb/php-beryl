@@ -13,22 +13,17 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class Restart extends CustomCommand
+final class Restart extends BrldCommand
 {
-    public $ok = BRLD_RESTART_OK;
-    public $err = array(ERR_NO_FLAGS);
-      
     public function __construct($client)
     {
-        $this->parameters = "";
-        $this->command = "RESTART";
+         $this->command    = "RESTART";
         
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

@@ -14,19 +14,15 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class LPop extends SimpleQuery
+final class LPop extends BrldCommand
 {
-    public function __construct($client, $key, $value)
+    public function __construct($client, $key)
     {
-        $this->parameters = $key . ' "' . $value . '"';
-        $this->command = "LPOP";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+         $this->command = "LPOPBACK";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

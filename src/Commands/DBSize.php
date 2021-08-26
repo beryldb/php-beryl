@@ -13,18 +13,13 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\NonSimpleQuery;
-use Beryl\Base\Response;
-use Beryl\Base\Protocols;
-
-final class DBSize extends NonSimpleQuery
+final class DBSize extends BrldCommand
 {
-    public function __construct($client)
+    public function __construct($client, $key = "")
     {
         $this->command = "DBSIZE";
-        parent::__construct($client, $this->command, "");
+        parent::__construct($client, $this->command, $key);
     }
 }
-
-

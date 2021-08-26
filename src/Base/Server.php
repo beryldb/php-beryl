@@ -14,8 +14,6 @@
 
 namespace Beryl\Base;
 
-use Beryl\Exceptions\ConnectionException;
-
 interface Server
 {
    /*
@@ -23,7 +21,7 @@ interface Server
     *
     * @throws ConnectionException
     */
-    
+
     public function connect();
 
    /*
@@ -33,7 +31,7 @@ interface Server
     */
      
     public function disconnect();
-
+    
     /*
      * Sends a command to the server.
      *
@@ -45,17 +43,15 @@ interface Server
      *
      *          · Response: Return from server.
      */
-    
-    public function send(Command $command);
-    
-    public function sendraw(Command $command);
 
-   /*
-    * Reads the output buffer
-    *
-    * @return Response.
-    */
-     
+    public function send(Command $command);
+
+    /*
+     * Reads the output buffer
+     *
+     * @return Response.
+     */
+
     public function read();
 }
-
+?>

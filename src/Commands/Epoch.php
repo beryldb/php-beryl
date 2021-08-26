@@ -14,19 +14,17 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class Epoch extends CustomCommand
+final class Epoch extends BrldCommand
 {
-    public $ok = BRLD_LOCAL_EPOCH;
-    public $err = array();
-      
+    public $extra = true;
+    
     public function __construct($client)
     {
-        $this->command = "EPOCH";
-        parent::__construct($this->ok, $this->err, $client, $this->command, "");
+         $this->command = "EPOCH";
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

@@ -13,20 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class HDel extends SimpleQuery
+final class HDel extends BrldCommand
 {
     public function __construct($client, $key, $hash)
     {
-        $this->parameters = $key . ' ' . $hash;
-        $this->command = "HDEL";
+         $this->parameters = Format::Basic($key, $hash);
+         $this->command    = "HDEL";
         
-        parent::__construct($client, $this->command, $this->parameters);
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-
+?>

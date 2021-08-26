@@ -13,18 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class HSetNX extends SimpleQuery
+final class HSetNX extends BrldCommand
 {
-    public function __construct($client, $key, $hash, $value)
-    {
-        $this->parameters = $key . ' ' . $hash . ' "' . $value . '"';
-        $this->command = "HSETNX";
+      public function __construct($client, $key, $hash, $value)
+      {
+          $this->parameters = Format::Hash($key, $hash, $value);
+          $this->command    = "HSETNX";
         
-        parent::__construct($client, $this->command, $this->parameters);
-    }
+          parent::__construct($client, $this->command, $this->parameters);
+      }
 }
+
+?>

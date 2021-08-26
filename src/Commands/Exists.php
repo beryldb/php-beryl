@@ -13,20 +13,16 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Exists extends SimpleQuery
+final class Exists extends BrldCommand
 {
-    public function __construct($client, $key)
-    {
-        $this->parameters = $key;
-        $this->command = "EXISTS";
-        
-        parent::__construct($client, $this->command, $this->parameters);
-    }
+      public function __construct($client, $key)
+      {
+          $this->command    = "EXISTS";
+          parent::__construct($client, $this->command, $key);
+      }
 }
 
-
+?>

@@ -20,7 +20,6 @@ class ListResult
     public $lastcmd;
     public $code;
     public $stack = [];
-    public $status;
     public $items = [];
     public $list = array();
     
@@ -31,11 +30,11 @@ class ListResult
     
     public function append_stack($_stack)
     {
-
         $this->stack = $_stack;
         
         if (isset($this->lastcmd->dual) && $this->lastcmd->dual)
         {
+
            foreach ($_stack as $item)
            {
                   $str = explode(" ", $item);
@@ -47,7 +46,14 @@ class ListResult
                   unset($str[3]);
               
                  $format = implode(" ", $str);
-                 $format = substr($format, 1);
+                 
+                 if (isset($this->lastcmd->comillas) && $this->lastcmd->comillas) 
+                 {
+                     $format = substr($format, 1, -1);
+                 }
+                 
+                 $val = substr($val, 1);
+                 
                  $this->items[$val] = $format;
            }
       }
@@ -56,7 +62,6 @@ class ListResult
            foreach ($_stack as $item)
            {
                   $str = explode(" ", $item);
-
                   unset($str[0]);
                   unset($str[1]);
                   unset($str[2]);
@@ -76,11 +81,8 @@ class ListResult
         
     }
     
-        
-    
     public function to_json()
     {
          return json_encode($this->items);
     }    
 }
-

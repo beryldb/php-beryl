@@ -14,21 +14,15 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class Current extends CustomCommand
+final class Current extends BrldCommand
 {
-    public $ok = BRLD_CURRENT_USE;
-    public $err = array();
-      
     public function __construct($client)
     {
-        $this->parameters = "";
-        $this->command = "CURRENT";
-        
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+         $this->command = "CURRENT";
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

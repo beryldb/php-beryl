@@ -14,19 +14,17 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class TIME extends CustomCommand
+final class Time extends BrldCommand
 {
-    public $ok = BRLD_LOCAL_TIME;
-    public $err = array();
-      
+    public $extra = true;
+    
     public function __construct($client)
     {
-        $this->command = "TIME";
-        parent::__construct($this->ok, $this->err, $client, $this->command, "");
+         $this->command = "TIME";
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

@@ -1,9 +1,11 @@
 <?php
 /*
- * Pushes two elements 'b' to list 'a', and then
- * looks for all items with limit 3.
+ * In this test:
  *
- * This script can be runned directly from the php-beryl directory:
+ * We create the list 'hello' and add the 'world' item to it. 
+ * The, we count items in list. We only have 1 so far.
+ * We sort the list. This is not so useful when you only have one item.
+ * Finally, we check position 0 with lpos.
  *
  * => php tests/lists.php
  */
@@ -13,21 +15,33 @@ require __DIR__.'/../vendor/autoload.php';
 $client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
-                    'timeout' => 30, 
                     'login' => 'root', 
                     'password' => 'default'
                    ]);
 
+/* Push an item hello */
 
-/* Flush database. */
+echo $client->lpush("hello", "world")     . "\n"; /* OK */
 
-$client->flushdb();
+/* Check if hello list exists */
 
-print_r($client->lpush("a", "b"));
-print_r($client->lpush("a", "b"));
+echo $client->exists("hello")             . "\n"; /* 1 */
+echo $client->lcount("hello", "world")    . "\n"; /* 1 */
+echo $client->lsort("hello")   		  . "\n"; /* OK */
+echo $client->lpos("hello", 0) 		  . "\n"; /* => world */
 
-/* offset 0, limit 3 */
 
-print_r($client->lfind("a", "b*", 0, 3));
+/* List all keys */
 
-?>
+$results = $client->lkeys("*");
+
+if ($results)
+{
+     foreach ($results as $key)
+     {
+         printf("%s\n", $key);
+     }
+}
+
+
+return;

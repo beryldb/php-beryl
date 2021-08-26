@@ -13,23 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class GeoAdd extends CustomCommand
+final class GeoAdd extends BrldCommand
 {
-    public $ok = BRLD_QUERY_OK;
-    public $err = array(ERR_EXPIRE, ERR_QUERY);
-
-    public function __construct($client, $name, $key, $value)
-    {
-        $this->parameters = $name . ' ' . $key . ' ' . $value;
-        $this->command = "GEOADD";
+      public function __construct($client, $key, $value, $hash)
+      {
+          $this->parameters = Format::Limits($key, $value, $hash);
+          $this->command    = "GEOADD";
         
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
-    }
+          parent::__construct($client, $this->command, $this->parameters);
+      }
 }
 
-
+?>

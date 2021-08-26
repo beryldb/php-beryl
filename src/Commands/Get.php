@@ -13,22 +13,17 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Get extends SimpleQuery
+final class Get extends BrldCommand
 {
     public $comillas = true;
     
     public function __construct($client, $key)
     {
-        $this->parameters = $key;
-        $this->command = "GET";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+         $this->command    = "GET";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

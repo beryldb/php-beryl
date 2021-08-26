@@ -14,19 +14,17 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\ListCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\CustomListCommand;
+use Beryl\Base\Format;
 
-final class MGet extends ListCommand
+final class MGet extends CustomListCommand
 {
-    private $command;
-    private $parameters;
-    
     public function __construct($client, $key, $offset, $limit)
     {
-        $this->parameters = $key . " " . $offset . " " . $limit;
-        $this->command = "MGET";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+         $this->parameters = Format::Limits($key, $offset, $limit);
+         $this->command    = "MGET";
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
+
+?>

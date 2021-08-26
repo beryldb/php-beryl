@@ -13,22 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class Setex extends CustomCommand
+final class Setex extends BrldCommand
 {
-    public $ok = BRLD_EXPIRE_ADD;
-    public $err = array(ERR_EXPIRE, ERR_QUERY);
-          
-    public function __construct($client, $time, $key, $value)
-    {
-        $this->parameters = $time . ' ' . $key . ' "' . $value . '"';
-        $this->command = "SETEX";
+      public function __construct($client, $seconds, $key, $value)
+      {
+          $this->parameters = Format::Hash($seconds, $key, $value);
+          $this->command    = "SETEX";
         
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
-    }
+          parent::__construct($client, $this->command, $this->parameters);
+      }
 }
 
-
+?>

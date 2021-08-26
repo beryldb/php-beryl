@@ -13,20 +13,15 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Base\Response;
-use Beryl\Connection\NonSimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Type extends NonSimpleQuery
+final class Type extends BrldCommand
 {
     public function __construct($client, $key)
     {
-        $this->parameters = $key;
-        $this->command = "TYPE";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+        $this->command    = "TYPE";
+        parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

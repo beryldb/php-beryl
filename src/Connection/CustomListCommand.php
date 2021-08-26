@@ -19,45 +19,54 @@ use Beryl\Base\ListResult;
 
 abstract class CustomListCommand implements CommandInterface
 {
-    private $command;
-    private $parameters;
-    private $client;
-
+    public $end   = Protocol::BRLD_END_LIST;
+    public $start = Protocol::BRLD_START_LIST;
+    public $item  = Protocol::BRLD_ITEM_LIST;
+    
     public $iter = true;
+    public $dual = false;
+    public $status;
     
-    public $end;
-    public $start;
-    public $item;
-    
-    public $err = array();
+    public $list   = [];
+    public $items  = [];
 
-    public function __construct($start, $end, $item, $client, $command, $parameters)
+    public $err = array(Protocol::ERR_INPUT);
+
+    public function __construct($client, $command, $parameters)
     {
-        $this->command = $command;
-        $this->parameters = $parameters;
-        $this->client = $client;
-        $this->end = $end;
-        $this->start = $start;
-        $this->item = $item;
+          $this->command    = $command;
+          $this->parameters = $parameters;
+          $this->client     = $client;
     }
-    
+     
     public function __toString(): string
     {
-        return $this->command . " " . $this->parameters . "\r\n";
+          return $this->command . " " . $this->parameters . "\r\n";
     }
-    
+
     public function Run()
     {
-             $response = $this->client->send($this);
-
-             $result = new ListResult($this);
-             
-             if ($response->status == $this->end)
-             {
+          $response = $this->client->send($this);
+          
+          $this->status = $response->status;
+          
+          if ($this->status != Protocol::BRLD_END_LIST)
+          {
+               $this->status = 0;
+               return;
+          }
+          
+          $result = new ListResult($this);
+          
+          if ($response->status == $this->end)
+          {
                    $result->append_stack($response->stack);
-             }
-             
-             return $result;
+          }
+
+          $this->items = $result->items;
+          $this->list = $result->list;
     }
-    
+
 }
+
+?>

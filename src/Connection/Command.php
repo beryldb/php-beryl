@@ -25,15 +25,14 @@ abstract class Command implements CommandInterface
 
     public function __construct($command, $parameters)
     {
-        $this->command = $command;
-        $this->parameters = $parameters;
+          $this->command = $command;
+          $this->parameters = $parameters;
     }
 
     public function __toString(): string
     {
-        return $this->command . " " . $this->parameters . "\r\n";
+          return $this->command . " " . $this->parameters . "\r\n";
     }
-    
-
 }
 
+?>

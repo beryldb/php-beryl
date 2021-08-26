@@ -13,20 +13,15 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class LCount extends SimpleQuery
+final class LCount extends BrldCommand
 {
     public function __construct($client, $key)
     {
-        $this->parameters = $key;
-        $this->command = "LCOUNT";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+         $this->command    = "LCOUNT";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

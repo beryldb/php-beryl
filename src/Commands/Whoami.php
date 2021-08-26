@@ -14,19 +14,15 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class Whoami extends CustomCommand
+final class Whoami extends BrldCommand
 {
-    public $ok = BRLD_WHOAMI;
-    public $err = array();
-      
     public function __construct($client)
     {
-        $this->command = "WHOAMI";
-        parent::__construct($this->ok, $this->err, $client, $this->command, "");
+         $this->command = "WHOAMI";
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

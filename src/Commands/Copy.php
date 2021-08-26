@@ -13,20 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\NonSimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Copy extends NonSimpleQuery
+final class Copy extends BrldCommand
 {
-    public function __construct($client, $key, $dest)
+    public function __construct($client, $key, $value)
     {
-        $this->parameters = $key . ' ' . $dest;
-        $this->command = "COPY";
+         $this->parameters = Format::Basic($key, $value);
+         $this->command    = "COPY";
         
-        parent::__construct($client, $this->command, $this->parameters);
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-
+?>

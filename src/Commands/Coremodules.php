@@ -15,24 +15,16 @@
 namespace Beryl\Commands;
 
 use Beryl\Connection\CustomListCommand;
-use Beryl\Base\Protocols;
 
-final class CoreModules extends CustomListCommand
+final class Coremodules extends CustomListCommand
 {
-    private $command;
-    private $parameters;
+    public $dual = true;
     
-    public $start = BRLD_BEGIN_OF_MODLIST;
-    public $end = BRLD_END_OF_MODLIST;
-    public $item = BRLD_MODLIST;
-    
-    public function __construct($client)
+    public function __construct($client, $key)
     {
-        $this->parameters;
-        $this->command = "COREMODULES";
-        
-        parent::__construct($this->start, $this->end, $this->item, $client, $this->command, $this->parameters);
+         $this->command = "COREMODULES";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

@@ -1,9 +1,9 @@
 <?php
 /*
- * Sets two keys (a, and a2) and then runs a get and a copy. Also,
- * this script runs both find and search.
+ * In this test:
  *
- * This script can be runned directly from the php-beryl directory:
+ * We define key set, check for its length and verify its type (KEY).
+ * We also run a getdel, which basically retrieves the hello key and then removes it.
  *
  * => php tests/keys.php
  */
@@ -17,36 +17,25 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
+echo $client->set("hello", "world") . "\n"; /* OK */
+echo $client->strlen("hello") 	    . "\n"; /* 5 */
+echo $client->exists("hello")       . "\n"; /* 1 */
 
-/* Let's set key test and then remove it after a get request. */
+echo $client->type("hello")         . "\n"; /* KEY */
+echo $client->getdel("hello")       . "\n"; /* world */
+echo $client->get("hello")          . "\n"; /* 0 */
 
-echo $client->set("test", "world")->value . "\n";
-echo $client->getdel("test")->value . "\r\n";
+echo $client->set("a", "b")         . "\n"; /* OK */
+echo $client->set("c", "d")         . "\n"; /* OK */
 
-/* Flush database (remove current database's content). */
 
-$client->flushdb();
+$results = $client->search("*");
 
-echo $client->set("hello", "world")->value . "\n";
-echo $client->get("hello")->value . "\n";
-echo $client->del("hello")->value .  "\n";
-
-/* Find keys: offset 0, limit 3. */
-
-foreach ($client->find("*")->items as $key => $value)
+if ($results)
 {
-      echo $key . " => " . $value . "\r\n";
+     foreach ($results as $key => $value)
+     {
+           printf("%-20s | %-10s\n", $key, $value);
+     }
 }
 
-/* Searches values: offset 0, limit 3. */
-
-foreach ($client->search("*")->list as $key)
-{
-      echo $key . "\r\n";
-}
-
-/* You may also check what kind of data is a given key: */
-
-echo $client->type("hello")->value. "\r\n";
-
-?>

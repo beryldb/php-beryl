@@ -14,19 +14,15 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class RKey extends SimpleQuery
+final class RKey extends BrldCommand
 {
     public function __construct($client)
     {
-        $this->parameters = "";
-        $this->command = "RKEY";
-        
-        parent::__construct($client, $this->command, $this->parameters);
+         $this->command = "RKEY";
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

@@ -13,22 +13,19 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class UseCommand extends CustomCommand
+final class UseCommand extends BrldCommand
 {
-    public $ok = BRLD_NEW_USE;
-    public $err = array(ERR_USE);
+      public $msg = true;
       
-    public function __construct($client, $id)
-    {
-        $this->parameters = $id;
-        $this->command = "USE";
+      public function __construct($client, $key)
+      {
+          $this->command    = "USE";
         
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
-    }
+          parent::__construct($client, $this->command, $key);
+      }
 }
 
-
+?>

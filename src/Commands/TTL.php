@@ -13,21 +13,15 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class TTL extends CustomCommand
+final class TTL extends BrldCommand
 {
-    public $ok = BRLD_TTL;
-    public $err = array(ERR_NOT_EXPIRE);
-          
     public function __construct($client, $key)
     {
-        $this->parameters = $key;
-        $this->command = "TTL";
-        parent::__construct($this->ok, $this->err, $client, $this->command, $this->parameters);
+         $this->command    = "TTL";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

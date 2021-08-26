@@ -13,20 +13,17 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Del extends SimpleQuery
+final class Del extends BrldCommand
 {
     public function __construct($client, $key)
     {
         $this->parameters = $key;
-        $this->command = "DEL";
+        $this->command    = "DEL";
         
         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-
+?>

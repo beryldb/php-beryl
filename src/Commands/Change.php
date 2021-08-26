@@ -13,20 +13,16 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
-
-final class Change extends CustomCommand
+final class Change extends BrldCommand
 {
-    public $ok = BRLD_DB_CHANGED;
-    public $err = array(ERR_DB_NOT_FOUND);
-      
-    public function __construct($client)
+    public function __construct($client, $key)
     {
-        $this->command = "DB";
-        parent::__construct($this->ok, $this->err, $client, $this->command, null);
+         $this->command    = "CHANGE";
+        
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

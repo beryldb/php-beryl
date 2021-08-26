@@ -15,23 +15,16 @@
 namespace Beryl\Commands;
 
 use Beryl\Connection\CustomListCommand;
-use Beryl\Base\Protocols;
 
 final class Commands extends CustomListCommand
 {
-    private $command;
-    private $parameters;
+    public $dual = true;
     
-    public $start = BRLD_COMMANDS_START;
-    public $end = BRLD_COMMANDS_END;
-    public $item = BRLD_COMMAND_ITEM;
-    
-    public function __construct($client)
+    public function __construct($client, $key)
     {
-        $this->command = "COMMANDS";
-        
-        parent::__construct($this->start, $this->end, $this->item, $client, $this->command, "");
+         $this->command = "COMMANDS";
+         parent::__construct($client, $this->command, $key);
     }
 }
 
-
+?>

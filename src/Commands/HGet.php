@@ -13,22 +13,20 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class HGet extends SimpleQuery
+final class HGet extends BrldCommand
 {
     public $comillas = true;
     
     public function __construct($client, $key, $hash)
     {
-        $this->parameters = $key . ' ' . $hash;
-        $this->command = "HGET";
+         $this->parameters = Format::Basic($key, $hash);
+         $this->command    = "HGET";
         
-        parent::__construct($client, $this->command, $this->parameters);
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-
+?>

@@ -1,8 +1,12 @@
 <?php
 /*
- * Retrieves information about your server.
+ * In this test:
  *
- * This script can be runned directly from the php-beryl directory:
+ * We retrieve version, check for this current database's size and retrieve
+ * server's time.
+ *
+ * We later perform other minor task, as asking for time as expressed in unix
+ * timestamp and check for current select.
  *
  * => php tests/info.php
  */
@@ -12,26 +16,15 @@ require __DIR__.'/../vendor/autoload.php';
 $client = new Beryl\Connection\Client([  
                     'host' => 'localhost', 
                     'port' => 6378, 
-                    'timeout' => 30, 
                     'login' => 'root', 
                     'password' => 'default'
                    ]);
 
-foreach ($client->modules()->list as $mod)
-{
-      echo $mod . "\r\n";
-}
 
-foreach ($client->commands()->list as $cmd)
-{
-      echo $cmd . "\r\n";
-}
+echo $client->version()         . "\n"; /* BerylDB-0 BerylDB-0.8.3 */
+echo $client->dbsize() 		. "\n"; /* 0.1 KB */
+echo $client->time() 		. "\n"; /* Wed Aug 25 2021 18:11:09 */
+echo $client->epoch() 		. "\n"; /* 1629929469 */
+echo $client->current()         . "\n"; /* 1 */
+echo $client->db()              . "\n"; /* default */
 
-echo $client->me() . "\n";
-echo $client->whoami() . "\n";
-echo $client->pwd() . "\n";
-echo $client->epoch() . "\n";
-echo $client->time() . "\n";
-echo $client->dbsize() . "\n";
-
-?>

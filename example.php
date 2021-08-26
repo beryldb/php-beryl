@@ -1,100 +1,85 @@
 <?php
 
+/*
+ * This is an example script for php-beryl.
+ */
+ 
 require __DIR__.'/vendor/autoload.php';
 
 $client = new Beryl\Connection\Client([  
-                     'host' => 'localhost', 
-                     'port' => 6378, 
-                     'timeout' => 30, 
-                     'login' => 'root', 
-                     'password' => 'default',
-                     'debug' => false
+                   'host' => 'localhost',   /* Host to connect to */
+                   'port' => 6378,          /* Server's port */
+                   'timeout' => 30,         /* Timeout before stop trying to connect */
+                   'login' => 'root',       /* Login to utilize */
+                   'password' => 'default', /* User's password */
+                   'debug' => false         /* Print raw data from remote server */
                    ]);
 
 
+/* Create variable hello and set it to 'world' */
 
-echo $client->pwd() . "\n";
+echo $client->set("hello", "world") 	. "\n";
+echo $client->set("test", "entry") 	. "\n";
 
-echo $client->time() . "\n";
-echo $client->epoch() . "\n";
+/* Set var to 100 */
 
-/* Flush database. */
+echo $client->set("var", "100") 	. "\n";
 
-//$client->flushdb();
+/* Increment var by 1 */
 
+echo $client->incr("var") 		. "\n";
 
-echo $client->mset("a", "b", "d")->value . "\n";
+/* Increment var by 50 */
 
-foreach ($client->mget("a")->list as $key)
+echo $client->incrby("var", "50") 	. "\n";
+
+/* Copy var into var2 */
+
+echo $client->copy("var", "var2")       . "\n";
+
+/* Set an expire in 'var'. Keep in mind that 'var2' will not be affected by this. */
+
+echo $client->expire("var", "300")       . "\n";
+
+/* Seconds remaining before 'var' expires */
+
+echo $client->ttl("var")                . "\n";
+
+/* Search for all key items. */
+
+$results = $client->search("*");
+
+if ($results)
 {
-      echo $key . "\r\n";
+     foreach ($results as $key => $value)
+     {
+           printf("%-20s | %-10s\n", $key, $value);
+     }
 }
 
-return;
+/* Create list 'b' and push 1, 2 and 3 */
 
-echo $client->hsetnx("a", "b", "d")->value . "\n";
-echo $client->hget("a", "b")->value . "\n";
+echo $client->lpush("b", 1) 		. "\n";
+echo $client->lpush("b", 2) 		. "\n";
+echo $client->lpush("b", 3) 		. "\n";
 
+/* Print all items in list b */
 
-foreach ($client->hkeys("a")->list as $key)
+foreach ($client->lget("b") as $key)
 {
-      echo $key . "\r\n";
+     printf("%s\n", $key);
 }
 
-/*echo $client->expire("a", 200)->status .  "\n";
-echo $client->ttl("a")->value .  "\n";
-*/
-/*echo $client->hset("hello2", "a", "world")->status . "\n";
-echo $client->hdel("hello2", "a")->value . "\n";
-echo $client->hget("hello2", "a")->value . "\n";
-*/
-return;
+/* Resize list b to 1 element (This will remove all elements from list.). */
 
+echo $client->lresize("b", 1)		   . "\n";
 
-/* Flush database (remove current database's content). */
+/* Create a map x, with hash item and value test */
 
-echo $client->flushdb()->status . "\r\n";
+echo $client->hset("x", "item", "test")    . "\n";
+echo $client->hset("x2", "item2", "test2") . "\n";
 
-return;
+/* Get x's length */
 
-echo $client->set("hello", "world")->value . "\n";
-echo $client->get("hello")->value . "\n";
-echo $client->del("hello")->value .  "\n";
+echo $client->hstrlen("x", "item") 	   . "\n";
 
-echo $client->get("test")->value . "\n";
-
-//echo $client->getdel("test")->value . "\r\n";
-
-return;
-/* Flush database (remove current database's content). */
-
-$client->flushdb();
-
-echo $client->set("hello", "world")->value . "\n";
-echo $client->get("hello")->value . "\n";
-echo $client->del("hello")->value .  "\n";
-
-
-return;
-
-//return;
-
-echo $client->me() . "\n";
-echo $client->whoami() . "\n";
-
-
-//echo $client->copy("a", "x")->value . "\r\n";
-//echo $client->get("x")->value .  "\n";
-//echo $client->flushdb()->status . "\n";
-
-//echo $client->type("a22")->value . "\r\n";
-
-return;
-
-
-echo $client->set("a2", "b")->value .  "\n";
-echo $client->del("a2")->value .  "\n";
-
-return;
-
-?>

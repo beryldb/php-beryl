@@ -14,609 +14,779 @@
 
 namespace Beryl\Connection;
 
-use Beryl\Base\Command;
-use Beryl\Base\Response;
-use Beryl\Connection\Protocols;
-use Beryl\Connection\Server;
-
-use Beryl\Base\Parser;
 use Beryl\Commands;
-use Beryl\Exceptions\ConnectionException;
+use Beryl\Connection\Server;
+use Beryl\Base\Command;
 
 class Client
 {
-      public $client;
-      public $parser;
+          public $client;
+          
+          public function __construct($args)
+          {
+               $this->client = new Server($this->check_args($args));
+          }
+          
+          public function Connect()
+          {
+               parent::Connect();
+          } 
 
-      private function check_args($args)
-      {
-           if (empty($args['host']))
-           {
-                $args['host'] = 'localhost';
-           }
-           
-           if (empty($args['port']))
-           {
-                $args['port'] = 6378;
-           }
-           
-           if (empty($args['timeout']))
-           {
-                $args['timeout'] = 30;
-           }
-           
-           if (empty($args['login']))
-           {
-                $args['login'] = 'root';
-           }
-           
-           if (empty($args['password']))
-           {
-                $args['password'] = 'default';
-           }
-        
-           if (empty($args['debug']))
-           {
-                $args['debug'] = false;
-           }
+          public function current()
+          {
+               $cmd = new Commands\Current($this->client);
+               return $cmd->Run();
+          }
+
+          public function Expires($key)
+          {
+               $cmd = new Commands\Expires($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function getset($key, $value)
+          {
+               $cmd = new Commands\Getset($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
+          public function getdel($key)
+          {
+               $cmd = new Commands\Getdel($this->client, $key);
+               return $cmd->Run();
+          }
+          
+          public function ttlat($key)
+          {
+               $cmd = new Commands\TTLAT($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function expire($key, $seconds)
+          {
+               $cmd = new Commands\Expire($this->client, $key, $seconds);
+               return $cmd->Run();
+          }
+
+          public function commands($key = "")
+          {
+                $cmd = new Commands\Commands($this->client, $key);
+                $cmd->Run();
+
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+
+                return $cmd->items;
+          }
+
+          public function coremodules($key = "")
+          {
+                $cmd = new Commands\Coremodules($this->client, $key);
+                $cmd->Run();
+
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+
+                return $cmd->items;
+          }
+          
+          public function modules($key = "")
+          {
+                $cmd = new Commands\Modules($this->client, $key);
+                $cmd->Run();
+
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+
+                return $cmd->items;
+          }
+
+          public function setnx($key, $value)
+          {
+                $cmd = new Commands\Setnx($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function exec($key)
+          {
+                $cmd = new Commands\Exec($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function cancel($key)
+          {
+                $cmd = new Commands\Cancel($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function future($seconds, $key, $value)
+          {
+                $cmd = new Commands\Future($this->client, $seconds, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function setex($seconds, $key, $value)
+          {
+                $cmd = new Commands\Setex($this->client, $seconds, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function me()
+          {
+                return $this->client->me;
+          }
+
+          public function flushall()
+          {
+                $cmd = new Commands\FlushAll($this->client);
+                return $cmd->Run();
+          }
+
+          public function dbdelete($key)
+          {
+                $cmd = new Commands\DBDelete($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function exists($key)
+          {
+                $cmd = new Commands\Exists($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function lexists($key, $value)
+          {
+                $cmd = new Commands\LExists($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function hdel($key, $hash)
+          {
+                $cmd = new Commands\HDel($this->client, $key, $hash);
+                return $cmd->Run();
+          }
+
+          public function strlen($key)
+          {
+                $cmd = new Commands\Strlen($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function hexists($key, $value)
+          {
+                $cmd = new Commands\HExists($this->client, $key, $value);
+                return $cmd->Run();
+          }
+          
+          public function hget($key, $value)
+          {
+                $cmd = new Commands\HGet($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function hset($key, $hash, $value)
+          {
+                $cmd = new Commands\HSet($this->client, $key, $hash, $value);
+                return $cmd->Run();
+          }
+          
+          public function hsetnx($key, $hash, $value)
+          {
+                $cmd = new Commands\HSetNX($this->client, $key, $hash, $value);
+                return $cmd->Run();
+          }
+
+          public function hgetall($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\HGetAll($this->client, $key, $offset, $limit);
+                $cmd->Run();
                 
-           return $args;
-      }
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+                
+                return $cmd->items;
+          }
+
+          public function hstrlen($key, $hash)
+          {
+                $cmd = new Commands\HStrlen($this->client, $key, $hash);
+                return $cmd->Run();
+          }
+
+          public function persist($key)
+          {
+                $cmd = new Commands\Persist($this->client, $key);
+                return $cmd->Run();
+          }
+
+
+          public function vlow($key)
+          {
+                $cmd = new Commands\VLow($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function rename($key, $value)
+          {
+                $cmd = new Commands\Rename($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function renamenx($key, $value)
+          {
+                $cmd = new Commands\RenameNX($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function clone($key, $value)
+          {
+                $cmd = new Commands\CloneKey($this->client, $key, $value);
+                return $cmd->Run();
+          }
+          
+          public function copy($key, $value)
+          {
+                $cmd = new Commands\Copy($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function move($key, $value)
+          {
+                $cmd = new Commands\Move($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function startup($key, $value)
+          {
+                $cmd = new Commands\Startup($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+
+          public function transfer($key, $value)
+          {
+                $cmd = new Commands\Transfer($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function vsum($key)
+          {
+                $cmd = new Commands\VSum($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function tte($key)
+          {
+                $cmd = new Commands\TTE($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function ttl($key)
+          {
+                $cmd = new Commands\TTL($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function vexists($key, $value)
+          {
+                $cmd = new Commands\VExists($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function vpushnx($key, $value)
+          {
+               $cmd = new Commands\VPushNX($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
+          public function mdel($key, $value)
+          {
+               $cmd = new Commands\MDel($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
+          public function vpush($key, $value)
+          {
+                $cmd = new Commands\VPush($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function mpushnx($key, $hesh, $value)
+          {
+                $cmd = new Commands\MPushNX($this->client, $key, $hesh, $value);
+                return $cmd->Run();
+          }
+
+          public function mpush($key, $hesh, $value)
+          {
+                $cmd = new Commands\MPush($this->client, $key, $hesh, $value);
+                return $cmd->Run();
+          }
+
+          public function lpush($key, $value)
+          {
+                $cmd = new Commands\LPush($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function lresize($key, $value)
+          {
+                $cmd = new Commands\LResize($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function vresize($key, $value)
+          {
+                $cmd = new Commands\VResize($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function vavg($key)
+          {
+                $cmd = new Commands\VAvg($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function lavg($key)
+          {
+                $cmd = new Commands\LAvg($this->client, $key);
+                return $cmd->Run();
+          }
+          
+          public function lhigh($key)
+          {
+                $cmd = new Commands\LHigh($this->client, $key);
+                return $cmd->Run();
+          }
+          
+          public function llow($key)
+          {
+                $cmd = new Commands\LLow($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function lpushnx($key, $value)
+          {
+                $cmd = new Commands\LPushNX($this->client, $key, $value);
+                return $cmd->Run();
+          }
+          
+          public function using($key)
+          {
+                $cmd = new Commands\Using($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function restart()
+          {
+                $cmd = new Commands\Restart($this->client);
+                return $cmd->Run();
+          }
+
+          public function dbcreate($key, $value)
+          {
+                $cmd = new Commands\DBCreate($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function flushdb()
+          {
+                $cmd = new Commands\FlushDB($this->client);
+                return $cmd->Run();
+          }
+
+          public function incr($var)
+          {
+                $cmd = new Commands\Incr($this->client, $var);
+                return $cmd->Run();
+          }
+
+          public function decr($var)
+          {
+                $cmd = new Commands\Decr($this->client, $var);
+                return $cmd->Run();
+          }
+
+          public function decrby($var, $value)
+          {
+                $cmd = new Commands\Decrby($this->client, $var, $value);
+                return $cmd->Run();
+          }
+
+          public function avg($var, $value)
+          { 
+                $cmd = new Commands\Avgby($this->client, $var, $value);
+                return $cmd->Run();
+          }
+
+          public function incrby($var, $value)
+          {	
+                $cmd = new Commands\Incrby($this->client, $var, $value);
+                return $cmd->Run();
+          }
+
+          public function dbsize($dbname = "")
+          {
+               $cmd = new Commands\DBSize($this->client, $dbname);
+               return $cmd->Run();
+          }
+
+          public function vget($key, $offset = "", $limit = "")
+          {
+               $cmd = new Commands\VGet($this->client, $key, $offset, $limit);
+               
+               if ($cmd->status != Protocol::BRLD_END_LIST)
+               {
+                      return $cmd->status;
+               }
+                
+                return $cmd->list;
+          }
+
+          public function lpopfront($key)
+          {
+               $cmd = new Commands\LPopFront($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function vpos($key, $value)
+          {
+               $cmd = new Commands\VPos($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
+          public function vfront($key)
+          {
+               $cmd = new Commands\VFront($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function vback($key)
+          {
+               $cmd = new Commands\VBack($this->client, $key);
+               return $cmd->Run();
+          }
+                    
+          public function vhigh($key)
+          {
+               $cmd = new Commands\VHigh($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function lpos($key, $value)
+          {
+               $cmd = new Commands\LPos($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
+          public function lfront($key)
+          {
+               $cmd = new Commands\LFront($this->client, $key);
+               return $cmd->Run();
+          }
+          
+          public function lback($key)
+          {
+               $cmd = new Commands\LBack($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function lfpop($key)
+          {
+               $cmd = new Commands\LFPop($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function lsort($key)
+          {
+               $cmd = new Commands\LSort($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function lpopback($key)
+          {
+               $cmd = new Commands\LPop($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function lcount($key)
+          {
+               $cmd = new Commands\LCount($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function lget($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\LGet($this->client, $key, $offset, $limit);
+                $cmd->Run();
+            
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+                
+                return $cmd->list;
+          }
+
+          public function mkeys($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\MKeys($this->client, $key, $offset, $limit);
+                $cmd->Run();
+            
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+            
+                return $cmd->list;
+          }
+
+          public function mget($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\MGet($this->client, $key, $offset, $limit);
+                $cmd->Run();
+                
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+                
+                return $cmd->list;
+          }
+
+          public function change($key)
+          {
+               $cmd = new Commands\Change($this->client, $key);
+               return $cmd->Run();
+          }
+          
+          public function geoadd($key, $value, $hash)
+          {
+               $cmd = new Commands\GeoAdd($this->client, $key, $value, $hash);
+               return $cmd->Run();
+          }
+          
+          public function geodist($key, $value)
+          {
+               $cmd = new Commands\GeoCalc($this->client, $key, $value);
+               return $cmd->Run();
+          }
+          
+          public function set($key, $value)
+          {
+               $cmd = new Commands\Set($this->client, $key, $value);
+               return $cmd->Run();
+          }
+          
+          public function del($key)
+          {
+               $cmd = new Commands\Del($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function get($key)
+          {
+               $cmd = new Commands\Get($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function count($key = "*")
+          {
+               $cmd = new Commands\Count($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function adduser($key, $value)
+          {
+                $cmd = new Commands\AddUser($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function getexp($seconds, $key)
+          {
+               $cmd = new Commands\Getexp($this->client, $seconds, $key);
+               return $cmd->Run();
+          }
+          
+          public function rkey()
+          {
+               $cmd = new Commands\RKey($this->client);
+               return $cmd->Run();
+          }
+
+          public function search($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\Search($this->client, $key, $offset, $limit);
+                $cmd->Run();
+            
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+            
+                return $cmd->items;
+          }
+
+          public function keys($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\Keys($this->client, $key, $offset, $limit);
+                $cmd->Run();
+            
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+                
+                return $cmd->list;
+          }
+
+          public function lkeys($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\LKeys($this->client, $key, $offset, $limit);
+                $cmd->Run();
+
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+            
+                return $cmd->list;
+          }
+
+          public function vkeys($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\VKeys($this->client, $key, $offset, $limit);
+                $cmd->Run();
+
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+            
+                return $cmd->list;
+          }
+
+          public function hkeys($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\HKeys($this->client, $key, $offset, $limit);
+                $cmd->Run();
+            
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+                
+                return $cmd->list;
+          }
+
+          public function isalpha($key)
+          {
+               $cmd = new Commands\IsAlpha($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function asbool($key)
+          {
+               $cmd = new Commands\AsBool($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function isbool($key)
+          {
+               $cmd = new Commands\IsBool($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function isnum($key)
+          {
+               $cmd = new Commands\IsNum($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function use($id)
+          {
+                $cmd = new Commands\UseCommand($this->client, $id);
+                return $cmd->Run();
+          }
+
+          public function time()
+          {
+                $cmd = new Commands\Time($this->client);
+                return $cmd->Run();
+          }
+
+          public function epoch()
+          {
+               $cmd = new Commands\Epoch($this->client);
+               return $cmd->Run();
+          }
+
+          public function whoami()
+          {
+               $cmd = new Commands\Whoami($this->client);
+               return $cmd->Run();
+          }
+
+          public function db()
+          {
+               $cmd = new Commands\DB($this->client);
+               return $cmd->Run();
+          }
+
+          public function type($key)
+          {
+               $cmd = new Commands\Type($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function version()
+          {
+               $cmd = new Commands\Version($this->client);
+               return $cmd->Run();
+          }
+          
+          private function check_args($args)
+          {
+               if (empty($args['host']))
+               {
+                    $args['host'] = 'localhost';
+               }
+
+               if (empty($args['port']))
+               {
+                    $args['port'] = 6378;
+               }
+
+               if (empty($args['timeout']))
+               {
+                    $args['timeout'] = 30;
+               }
+
+               if (empty($args['login']))
+               {
+                    $args['login'] = 'root';
+               }
+
+               if (empty($args['password']))
+               {
+                    $args['password'] = 'default';
+               }
+
+               if (empty($args['debug']))
+               {
+                    $args['debug'] = false;
+               }
+
+               return $args;
+          }
+          
       
-      public function __construct($args)
-      {
-            $args = $this->check_args($args);       
-            $this->client = new Server($args);
-      }
-
-
-      public function disconnect()
-      {
-           $this->client->disconnect();
-           return "OK";
-      }
-
-      public function connect()
-      {
-            parent::connect();
-      }	
-
-      /* 
-       * Returns last known ping.
-       * 
-       * @return:
-       *
-       *         · microtime.
-       */    
-    
-      public function get_last_ping()
-      {
-           return $this->client->last_ping;
-      }
-
-      /* Server functionalities. */
-      
-      public function flushdb()
-      {
-             $cmd = new Commands\Flushdb($this->client);
-             return $cmd->Run();
-      }
-
-      public function current()
-      {
-             $cmd = new Commands\Current($this->client);
-             return $cmd->Run();
-      }
-
-      public function dbsize()
-      {
-             $cmd = new Commands\DBSize($this->client);
-             return $cmd->Run()->value;
-      }
-
-      public function use($id)
-      {
-             $cmd = new Commands\UseCommand($this->client, $id);
-             return $cmd->Run();
-      }
-      
-      public function using($instance)
-      {
-             $cmd = new Commands\UsingCommand($this->client, $instance);
-             return $cmd->Run();
-      }
-      
-      /* 
-       * Keys manipulators.
-       * These are functions that bypass core_keys from
-       * BerylDB.
-       */    
-
-      public function exists($key)
-      {
-             $cmd = new Commands\Exists($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function rkey()
-      {
-             $cmd = new Commands\RKey($this->client);
-             return $cmd->Run();
-      }
-
-      public function del($key)
-      {
-             $cmd = new Commands\Del($this->client, $key);
-             return $cmd->Run();
-      }
-       
-      public function getset($key, $value)
-      {
-             $cmd = new Commands\GetSet($this->client, $key, $value);
-             return $cmd->Run();
-      }
-
-      public function getdel($key)
-      {
-             $cmd = new Commands\GetDel($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function touch($key)
-      {
-             $cmd = new Commands\Touch($this->client, $key);
-             return $cmd->Run();
-      }
-
-
-      public function ntouch($key)
-      {
-             $cmd = new Commands\NTouch($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function strlen($key)
-      {
-             $cmd = new Commands\Strlen($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function move($key, $dest)
-      {
-             $cmd = new Commands\Move($this->client, $key, $dest);
-             return $cmd->Run();
-      }
-      
-      public function rename($key, $dest)
-      {
-             $cmd = new Commands\Rename($this->client, $key, $dest);
-             return $cmd->Run();
-      }
-      
-      public function renamenx($key, $dest)
-      {
-             $cmd = new Commands\RenameNX($this->client, $key, $dest);
-             return $cmd->Run();
-      }
-
-      public function concat($key, $dest)
-      {
-             $cmd = new Commands\Concat($this->client, $key, $dest);
-             return $cmd->Run();
-      }
-
-      public function append($key, $dest)
-      {
-             $cmd = new Commands\Append($this->client, $key, $dest);
-             return $cmd->Run();
-      }
-      
-      public function copy($key, $dest)
-      {
-             $cmd = new Commands\Copy($this->client, $key, $dest);
-             return $cmd->Run();
-      }
-      
-      public function set($key, $value)
-      {
-             $cmd = new Commands\Set($this->client, $key, $value);
-             return $cmd->Run();
-      }
-
-      public function get($key)
-      {
-             $cmd = new Commands\Get($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function setnx($key, $value)
-      {
-             $cmd = new Commands\SetNX($this->client, $key, $value);
-             return $cmd->Run();
-      }
-
-      public function hsetnx($key, $hesh, $value)
-      {
-             $cmd = new Commands\HSetNX($this->client, $key, $hesh, $value);
-             return $cmd->Run();
-      }
-      
-      public function settx($key, $value)
-      {
-             $cmd = new Commands\SetTX($this->client, $key, $value);
-             return $cmd->Run();
-      }
-
-      public function count($key)
-      {
-             $cmd = new Commands\Count($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function find($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\Find($this->client, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-
-      public function search($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\Search($this->client, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-
-
-      /* Expires */
-      
-      public function ttl($key)
-      {
-             $cmd = new Commands\TTL($this->client, $key);
-             return $cmd->Run();
-      }
-      
-      public function expire($key, $seconds)
-      {
-             $cmd = new Commands\Expire($this->client, $key, $seconds);
-             return $cmd->Run();
-      }
-      
-      public function setex($seconds, $key, $value)
-      {
-             $cmd = new Commands\Setex($this->client, $seconds, $key, $value);
-             return $cmd->Run();
-      }
-
-
-      public function reset()
-      {
-             $cmd = new Commands\Reset($this->client);
-             return $cmd->Run();
-      }
-      
-
-      /* 
-       * Alternatives
-       */
-       
-       public function sendcmd($cmd, $args)
-       {
-             $cmd = new Commands\RawCommand($this->client, $cmd, $args);
-             return $cmd->Run();
-       }
-       
-      public function firstof($login)
-      {
-             $cmd = new Commands\FirstOf($this->client, $login);
-             return $cmd->Run();
-      }
-
-      public function logout($instance, $reason)
-      {
-             $cmd = new Commands\Logout($this->client, $instance, $reason);
-             return $cmd->Run();
-      }
-      
-      /* multi maps */
-      
-      public function mset($key, $hash, $value)
-      {
-             $cmd = new Commands\MSet($this->client, $key, $hash, $value);      
-             return $cmd->Run();
-      }
-      
-      public function mget($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\MGet($this->client, $key, $offset, $limit);      
-             return $cmd->Run();
-      }
-      
-      public function miter($key, $hesh, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\MIter($this->client, $key, $hesh, $offset, $limit);      
-             return $cmd->Run();
-      }
-      
-      /*
-       * Informational interface. 
-       */
-
-      public function type($key)
-      {
-             $cmd = new Commands\Type($this->client, $key);
-             return $cmd->Run();
-      }
-       
-      public function commands()
-      {
-             $cmd = new Commands\Commands($this->client);
-             return $cmd->Run();
-      }
-
-      public function version()
-      {
-             $cmd = new Commands\Version($this->client);
-             return $cmd->Run();
-      }
-
-      public function me()
-      {
-            return $this->client->me;
-      }
-
-      public function whoami()
-      {
-             $cmd = new Commands\Whoami($this->client);
-             return $cmd->Run()->status;
-      }
-       
-      public function pwd()
-      {
-             $cmd = new Commands\Pwd($this->client);
-             return $cmd->Run()->status;
-      }
-      
-      public function modules()
-      {
-             $cmd = new Commands\Modules($this->client);
-             return $cmd->Run();
-      }
-      
-      public function coremodules()
-      {
-             $cmd = new Commands\Coremodules($this->client);
-             return $cmd->Run();
-      }
-      
-      public function time()
-      {
-             $cmd = new Commands\Time($this->client);
-             return $cmd->Run()->status;
-      }
-      
-      public function epoch()
-      {
-             $cmd = new Commands\Epoch($this->client);
-             return $cmd->Run()->status;
-      }
-
-      public function myagent()
-      {
-             $cmd = new Commands\MyAgent($this->client);
-             return $cmd->Run();
-      }
-
-
-      /* Admin */
-      
-      public function restart()
-      {
-             $cmd = new Commands\Restart($this->client);
-             return $cmd->Run();
-      }
-
-      public function shutdown()
-      {
-             $cmd = new Commands\Shutdown($this->client);
-             return $cmd->Run();
-      }
-
-      public function finger()
-      {
-             $cmd = new Commands\Finger($this->client);
-             return $cmd->Run();
-      }
-
-      public function idle($instance)
-      {
-             $cmd = new Commands\Idle($this->client, $instance);
-             return $cmd->Run();
-      }
-      
-      /* Operation functions. */
-      
-      public function incr($var)
-      {
-             $cmd = new Commands\Incr($this->client, $var);
-             return $cmd->Run();
-      }
-
-      public function decr($var)
-      {
-             $cmd = new Commands\Decr($this->client, $var);
-             return $cmd->Run();
-      }
-
-      public function decrby($var, $value)
-      {
-             $cmd = new Commands\IncrBy($this->client, $var, $value);
-             return $cmd->Run();
-      }
-      
-      public function incrby($var, $value)
-      {
-             $cmd = new Commands\IncrBy($this->client, $var, $value);
-             return $cmd->Run();
-      }
-
-      public function div($var, $value)
-      {
-             $cmd = new Commands\Div($this->client, $var, $value);
-             return $cmd->Run();
-      }
-
-      public function mult($var, $value)
-      {
-             $cmd = new Commands\Mult($this->client, $var, $value);
-             return $cmd->Run();
-      }
-      
-      /* Geo functions */
-      
-      public function geoadd($name, $lat, $long)
-      {
-             $cmd = new Commands\GeoAdd($this->client, $name, $lat, $long);
-             return $cmd->Run();
-      }
-
-      public function geodel($name)
-      {
-             $cmd = new Commands\GeoDel($this->client, $name);
-             return $cmd->Run();
-      }
-      
-      public function geoget($name)
-      {
-             $cmd = new Commands\GeoGet($this->client, $name);
-             return $cmd->Run();
-      }
-
-      /* Maps */
-      
-      public function hset($key, $hash, $value)
-      {
-             $cmd = new Commands\HSet($this->client, $key, $hash, $value);
-             return $cmd->Run();
-      }
-      
-      public function hget($key, $hash)
-      {
-             $cmd = new Commands\HGet($this->client, $key, $hash);
-             return $cmd->Run();
-      }
-
-      public function hcount($key)
-      {
-             $cmd = new Commands\HCount($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function hkeys($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\HKeys($this->client, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-
-      public function hmove($map, $hash, $dest)
-      {
-             $cmd = new Commands\HMove($this->client, $map, $hash, $dest);
-             return $cmd->Run();
-      }
-
-      public function hdelall($key)
-      {
-             $cmd = new Commands\HDelAll($this->client, $key);
-             return $cmd->Run();
-      }
-      
-      public function hsearch($map, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\HSearch($this->client, $map, $offset, $limit);
-             return $cmd->Run();
-      }
-
-      public function hdel($key, $hesh)
-      {
-             $cmd = new Commands\HDel($this->client, $key, $hesh);
-             return $cmd->Run();
-      }
-
-      public function hseek($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\HSeek($this->client, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-      
-      /* Lists */
-      
-      public function lpush($key, $hesh)
-      {
-             $cmd = new Commands\LPush($this->client, $key, $hesh);
-             return $cmd->Run();
-      }
-
-      public function lremove($key)
-      {
-             $cmd = new Commands\LRemove($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function lpop($key, $value)
-      {
-             $cmd = new Commands\LPop($this->client, $key, $value);
-             return $cmd->Run();
-      }
-
-      public function lpopall($key, $value)
-      {
-             $cmd = new Commands\LPopAll($this->client, $key, $value);
-             return $cmd->Run();
-      }
-      
-      public function lcount($key)
-      {
-             $cmd = new Commands\LCount($this->client, $key);
-             return $cmd->Run();
-      }
-
-      public function lsearch($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\LSearch($this->client, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-
-      public function lfind($map, $key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\LFind($this->client, $map, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-
-      public function lget($key, $offset = 0, $limit = -1)
-      {
-             $cmd = new Commands\LGet($this->client, $key, $offset, $limit);
-             return $cmd->Run();
-      }
-      
-      public function lexist($key, $value)
-      {
-             $cmd = new Commands\LExist($this->client, $key, $value);
-             return $cmd->Run();
-      }
-      
-      /* Database management */
-      
-      public function db($key, $value)
-      {
-             $cmd = new Commands\DB($this->client, $key, $value);
-             return $cmd->Run();
-      }
-      
-      public function change($key, $value)
-      {
-             $cmd = new Commands\Change($this->client, $key, $value);
-             return $cmd->Run();
-      }
-      
-      
-      
-
 }

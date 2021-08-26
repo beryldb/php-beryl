@@ -14,19 +14,15 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\CustomCommand;
-use Beryl\Base\Protocols;
+use Beryl\Connection\BrldCommand;
 
-final class DB extends CustomCommand
+final class DB extends BrldCommand
 {
-    public $ok = BRLD_DB_NAME;
-    public $err = array(ERR_DB_NOT_SET);
-      
     public function __construct($client)
     {
-        $this->command = "DB";
-        parent::__construct($this->ok, $this->err, $client, $this->command, null);
+         $this->command = "DB";
+         parent::__construct($client, $this->command, "");
     }
 }
 
-
+?>

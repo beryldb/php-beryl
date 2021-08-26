@@ -13,20 +13,16 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Expire extends SimpleQuery
+final class Expire extends BrldCommand
 {
     public function __construct($client, $key, $seconds)
     {
-        $this->parameters = $key . ' ' . $seconds;
-        $this->command = "EXPIRE";
+        $this->parameters = Format::Basic($key, $seconds);
+        $this->command    = "EXPIRE";
         
         parent::__construct($client, $this->command, $this->parameters);
     }
 }
-
-

@@ -13,20 +13,17 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-use Beryl\Base\Protocols;
-
-final class Incr extends SimpleQuery
+final class Incr extends BrldCommand
 {
     public function __construct($client, $key)
     {
-        $this->parameters = $key;
-        $this->command = "INCR";
+         $this->parameters = $key;
+         $this->command    = "INCR";
         
-        parent::__construct($client, $this->command, $this->parameters);
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 
-
+?>

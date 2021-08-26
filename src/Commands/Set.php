@@ -13,19 +13,18 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Base\Response;
-use Beryl\Connection\SimpleQuery;
-
-final class Set extends SimpleQuery
+final class Set extends BrldCommand
 {
-    public function __construct($client, $key, $value)
-    {
-        $this->parameters = $key . ' "' . $value . '"';
-        $this->command = "SET";
+      public function __construct($client, $key, $value)
+      {
+          $this->parameters = Format::Key($key, $value);
+          $this->command    = "SET";
         
-        parent::__construct($client, $this->command, $this->parameters);
-    }
+          parent::__construct($client, $this->command, $this->parameters);
+      }
 }
 
-
+?>
