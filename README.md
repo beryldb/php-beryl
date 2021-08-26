@@ -12,6 +12,8 @@ documentation at [docs.beryl.dev](https://docs.beryl.dev/).
 
 * We are on [Twitter](https://twitter.com/beryldb).
 
+![Logo](https://docs.beryl.dev/img/smaller.png??)
+
 ## Loading 
 
 PHP-beryl utilizes the autoloading features of PHP in order to run its
