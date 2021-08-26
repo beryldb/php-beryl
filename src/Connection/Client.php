@@ -166,6 +166,18 @@ class Client
                 return $cmd->Run();
           }
 
+          public function ismatch($key, $value)
+          {
+                $cmd = new Commands\IsMatch($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
+          public function char($key, $value)
+          {
+                $cmd = new Commands\Char($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
           public function hdel($key, $hash)
           {
                 $cmd = new Commands\HDel($this->client, $key, $hash);

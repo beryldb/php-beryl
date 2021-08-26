@@ -17,7 +17,9 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
-echo $client->set("hello", "world") . "\n"; /* OK */
+echo $client->set("hello", "world") . "\n";    /* OK */
+echo $client->ismatch("hello", "wo*") . "\n";  /* 1 */
+
 echo $client->strlen("hello") 	    . "\n"; /* 5 */
 echo $client->exists("hello")       . "\n"; /* 1 */
 

@@ -21,6 +21,10 @@ $client = new Beryl\Connection\Client([
 echo $client->set("hello", "world") 	. "\n";
 echo $client->set("test", "entry") 	. "\n";
 
+/* Returns third character (l) in key 'hello' */
+
+echo $client->char("hello", 3)     . "\n";
+
 /* Set var to 100 */
 
 echo $client->set("var", "100") 	. "\n";

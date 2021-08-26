@@ -57,6 +57,14 @@ class Server implements ServerInterface
               $this->send(new ILogin($args['login'], $args['password'])); 
         }
 
+        /* 
+         * Connects to remote server.
+	 * 
+	 * @actions:
+         *
+         *        · Creates a tcp-based stream socket.
+         */    
+         
         public function connect()
         {
               if (!$this->resource = @stream_socket_client("tcp://{$this->host}:{$this->port}", $this->errorno, $this->error_msg, $this->timeout)) 
@@ -175,6 +183,19 @@ class Server implements ServerInterface
              }
         }
 
+        /* 
+         * Sends a command to the server. A command is typically defined
+         * in src/Commands,
+         * 
+         * @parameters:
+	 *
+	 *         · $command    : Command to deliver.
+         *
+         * @return:
+         *
+         +         · $read:	: Reading string.	 
+         */    
+         
         public function send(CommandInterface $command)
         {
              if (!$this->resource) 
