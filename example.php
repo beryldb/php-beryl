@@ -87,3 +87,7 @@ echo $client->hset("x2", "item2", "test2") . "\n";
 
 echo $client->hstrlen("x", "item") 	   . "\n";
 
+/* Count all items in map x */
+
+echo $client->hcount("x")      . "\n";
+

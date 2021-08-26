@@ -23,8 +23,10 @@ abstract class CustomListCommand implements CommandInterface
     public $start = Protocol::BRLD_START_LIST;
     public $item  = Protocol::BRLD_ITEM_LIST;
     
-    public $iter = true;
-    public $dual = false;
+    public $iter  = true;
+    public $dual  = false;
+    public $split = 0;
+    
     public $status;
     
     public $list   = [];

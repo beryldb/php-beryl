@@ -69,7 +69,7 @@ class Server implements ServerInterface
         {
               if (!$this->resource = @stream_socket_client("tcp://{$this->host}:{$this->port}", $this->errorno, $this->error_msg, $this->timeout)) 
               {
-                   echo "Unable to connect to " . $this->host . ":" . $this->port . ": $this->error_message\r\n";
+                   echo "Unable to connect to " . $this->host . ":" . $this->port . " $this->error_message\r\n";
                    exit;
               }
         }   

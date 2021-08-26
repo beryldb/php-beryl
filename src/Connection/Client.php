@@ -190,6 +190,12 @@ class Client
                 return $cmd->Run();
           }
 
+          public function hcount($key)
+          {
+                $cmd = new Commands\HCount($this->client, $key);
+                return $cmd->Run();
+          }
+
           public function hexists($key, $value)
           {
                 $cmd = new Commands\HExists($this->client, $key, $value);
@@ -692,6 +698,19 @@ class Client
                 return $cmd->list;
           }
 
+          public function hlist($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\HList($this->client, $key, $offset, $limit);
+                $cmd->Run();
+            
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+            
+                return $cmd->list;
+          }
+
           public function hkeys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\HKeys($this->client, $key, $offset, $limit);
@@ -750,6 +769,12 @@ class Client
           public function pwd()
           {
                $cmd = new Commands\PWD($this->client);
+               return $cmd->Run();
+          }
+
+          public function reset()
+          {
+               $cmd = new Commands\Reset($this->client);
                return $cmd->Run();
           }
 
