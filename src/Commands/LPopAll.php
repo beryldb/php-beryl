@@ -12,11 +12,19 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-/* Returns API version. */
+namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-require __DIR__.'/../vendor/autoload.php';
+final class LPopAll extends BrldCommand
+{
+    public function __construct($client, $key, $value)
+    {
+         $this->parameters = Format::Key($key, $value);
+         $this->command    = "LPOPALL";
+        
+         parent::__construct($client, $this->command, $this->parameters);
+    }
+}
 
-$version = new Beryl\Connection\Version();
-echo $version->Get();
-
-?> 
+?>

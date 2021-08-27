@@ -331,6 +331,12 @@ class Client
                return $cmd->Run();
           }
 
+          public function lpopall($key, $value)
+          {
+               $cmd = new Commands\LPopAll($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
           public function ldel($key, $value)
           {
                $cmd = new Commands\LDel($this->client, $key, $value);

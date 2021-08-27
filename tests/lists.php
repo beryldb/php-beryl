@@ -46,3 +46,7 @@ if ($results)
 /* Delete item world from list hello. */
 
 echo $client->ldel("hello", "world")            . "\n"; /* => OK */
+
+/* Removes all 'world' items in list hello */
+
+echo $client->lpopall("hello", "world")         . "\n"; /* OK */
