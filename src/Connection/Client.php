@@ -529,6 +529,12 @@ class Client
                return $cmd->Run();
           }
 
+          public function vsort($key)
+          {
+               $cmd = new Commands\VSort($this->client, $key);
+               return $cmd->Run();
+          }
+
           public function lsort($key)
           {
                $cmd = new Commands\LSort($this->client, $key);
