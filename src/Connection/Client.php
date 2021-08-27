@@ -331,6 +331,12 @@ class Client
                return $cmd->Run();
           }
 
+          public function ldel($key, $value)
+          {
+               $cmd = new Commands\LDel($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
           public function vpush($key, $value)
           {
                 $cmd = new Commands\VPush($this->client, $key, $value);
@@ -717,6 +723,19 @@ class Client
                 return $cmd->list;
           }
 
+          public function hvals($key, $offset = "", $limit = "")
+          {
+                $cmd = new Commands\HVals($this->client, $key, $offset, $limit);
+                $cmd->Run();
+ 
+                if ($cmd->status != Protocol::BRLD_END_LIST)
+                {
+                      return $cmd->status;
+                }
+            
+                return $cmd->list;
+          }
+
           public function hkeys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\HKeys($this->client, $key, $offset, $limit);
@@ -745,6 +764,18 @@ class Client
           public function isbool($key)
           {
                $cmd = new Commands\IsBool($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function firstof($key)
+          {
+               $cmd = new Commands\FirstOf($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function idle($key)
+          {
+               $cmd = new Commands\Idle($this->client, $key);
                return $cmd->Run();
           }
 

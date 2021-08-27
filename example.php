@@ -15,7 +15,6 @@ $client = new Beryl\Connection\Client([
                    'debug' => false         /* Print raw data from remote server */
                    ]);
 
-
 /* Create variable hello and set it to 'world' */
 
 echo $client->set("hello", "world") 	. "\n";

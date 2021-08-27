@@ -41,3 +41,6 @@ if ($results)
      }
 }
 
+/* Set key 'a' to be automatically deleted after 300 seconds. */
+
+echo $client->expire("a", 300)       . "\n"; /* OK */

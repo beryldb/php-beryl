@@ -43,5 +43,6 @@ if ($results)
      }
 }
 
+/* Delete item world from list hello. */
 
-return;
+echo $client->ldel("hello", "world")            . "\n"; /* => OK */
