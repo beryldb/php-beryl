@@ -15,7 +15,6 @@ $client = new Beryl\Connection\Client([
                     'port' => 6378, 
                     'login' => 'root', 
                     'password' => 'default',
-                    'debug'  => 'true'
                    ]);
 
 echo $client->flushdb()            . "\n"; /* OK */

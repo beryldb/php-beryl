@@ -27,7 +27,7 @@ composer on Mac OS:
 brew install composer
 ```
 
-On Debian-based systems:
+* On Debian-based systems:
 
 ```
 sudo apt update
@@ -35,7 +35,7 @@ sudo apt install curl php-cli php-mbstring git unzip
 curl -sS https://getcomposer.org/installer -o composer-setup.php
 ```
 
-Installing dependencies:
+* Installing php-beryl's dependencies:
 
 ```
 composer install
