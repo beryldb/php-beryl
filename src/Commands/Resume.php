@@ -13,18 +13,15 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\Command;
-
-final class Pong extends Command
+final class Resume extends BrldCommand
 {
-    private $command;
-    private $parameters;
-    
-    public function __construct($param)
+    public function __construct($client, $key)
     {
-        $this->command = "PONG";
-        parent::__construct($this->command, $param);
+         $this->command    = "RESUME";
+        
+         parent::__construct($client, $this->command, $key);
     }
 }
 

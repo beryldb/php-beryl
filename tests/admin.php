@@ -14,10 +14,9 @@ $client = new Beryl\Connection\Client([
                     'host' => 'localhost', 
                     'port' => 6378, 
                     'login' => 'root', 
-                    'password' => 'default'
+                    'password' => 'default',
+                    'debug'  => 'true'
                    ]);
-
-echo $client->pwd()                . "\n"; /* OK */
 
 echo $client->flushdb()            . "\n"; /* OK */
 echo $client->flushall()           . "\n"; /* OK */
@@ -47,6 +46,10 @@ if ($results)
            printf("%-20s | %-10s\n", $key, $value);
      }
 }
+
+/* Server's pwd */
+
+echo $client->pwd()                . "\n"; /* OK */
 
 /* Restarts server */
 

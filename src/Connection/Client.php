@@ -800,6 +800,18 @@ class Client
                return $cmd->Run();
           }
 
+          public function pause($key, $value = "")
+          {
+               $cmd = new Commands\Pause($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
+          public function resume($key)
+          {
+               $cmd = new Commands\Resume($this->client, $key);
+               return $cmd->Run();
+          }
+
           public function idle($key)
           {
                $cmd = new Commands\Idle($this->client, $key);

@@ -20,6 +20,7 @@ use Beryl\Base\Response;
 use Beryl\Base\Server as ServerInterface;
 use Beryl\Base\Command as CommandInterface;
 use Beryl\Commands\ILogin;
+use Beryl\Commands\Pong;
 
 class Server implements ServerInterface
 {
@@ -104,7 +105,7 @@ class Server implements ServerInterface
                   if ($str[0] == Protocol::BRLD_PING)
                   {
                          $this->lastping = microtime(true);
-                         $this->sendraw(new Pong($this->lastping));
+                         $this->sendraw(new Pong(":1"));
                          continue;
                  }
     

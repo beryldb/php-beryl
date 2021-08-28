@@ -13,18 +13,17 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
-use Beryl\Connection\Command;
-
-final class Pong extends Command
+final class Pause extends BrldCommand
 {
-    private $command;
-    private $parameters;
-    
-    public function __construct($param)
+    public function __construct($client, $key, $value)
     {
-        $this->command = "PONG";
-        parent::__construct($this->command, $param);
+         $this->command    = "PAUSE";
+         $this->parameters = Format::Basic($key, $value);
+        
+         parent::__construct($client, $this->command, $this->parameters);
     }
 }
 

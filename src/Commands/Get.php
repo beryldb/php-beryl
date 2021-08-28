@@ -14,6 +14,7 @@
 
 namespace Beryl\Commands;
 use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
 
 final class Get extends BrldCommand
 {
@@ -21,6 +22,8 @@ final class Get extends BrldCommand
     
     public function __construct($client, $key)
     {
+         $this->parameters = Format::Limits($key, $offset, $limit);
+
          $this->command    = "GET";
          parent::__construct($client, $this->command, $key);
     }
