@@ -34,6 +34,8 @@ class Protocol
     const  ERR_WRONG_PASS	=	536;
     const  BRLD_PING		=	110;
     const  BRLD_RESTART		=	289;
+    const  BRLD_NOTIFICATION	= 	277;
+    const  BRLD_MONITOR		=	245;
 }
 
 ?>

@@ -116,6 +116,13 @@ class Server implements ServerInterface
                  
                  $this->last_code = $str[1];                 
 
+                 /* These operations are NOT supported by this PHP api. */
+
+                 if ($this->last_code == Protocol::BRLD_NOTIFICATION || $this->last_code == Protocol::BRLD_MONITOR)
+                 {
+                        continue;
+                 }
+                 
                  if ($this->last_code == Protocol::ERR_WRONG_PASS)
                  {
                         echo "Incorrect login.\n\r";
