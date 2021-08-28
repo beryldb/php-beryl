@@ -27,14 +27,13 @@ class ListResult
     {
          $this->lastcmd = $_lastcmd;
     }    
-    
+
     public function append_stack($_stack)
     {
         $this->stack = $_stack;
         
         if (isset($this->lastcmd->dual) && $this->lastcmd->dual)
         {
-
            foreach ($_stack as $item)
            {
                   $str = explode(" ", $item);

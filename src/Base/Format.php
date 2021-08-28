@@ -14,33 +14,81 @@
 
 namespace Beryl\Base;
 
+/* 
+ * Formats a given string, based in provided parameters.
+ * These formatters make it easier to send commands to the
+ * remote server.
+ */
+ 
 class Format
 {
-      public function __construct()
-      {
+         public function __construct()
+         {
     
-      }
+         }
 
-      public static function Limits($key, $hash, $value)
-      {
-           return $key . ' ' . $hash . ' ' . $value;
-      }
-
-      public static function Hash($key, $hash, $value)
-      {
-           return $key . ' ' . $hash . ' "' . $value . '"';
-      }
+        /* 
+         * Creates a parameter that is used when setting or
+         * to look for a given value.
+         *
+         * @parameters:
+	 *
+	 *         · string	: Key to use.
+	 *         · string	: Value to look up.
+	 * 
+         * @return:
+ 	 *
+         *         · string	: key "value"
+         */          
     
-      public static function Key($key, $value)
-      {
-           return $key . ' "' . $value . '"';
-      }
+         public static function Key($key, $value)
+         {
+               return $key . ' "' . $value . '"';
+         }
       
-      public static function Basic($key, $value)
-      {
-           return $key . ' ' . $value;
-      }
-      
+        /* 
+         * Formats a simple key value parameter.
+         * 
+	 * 
+         * @return:
+ 	 *
+         *         · string	:  key value
+         */          
+         
+         public static function Basic($key, $value)
+         {
+               return $key . ' ' . $value;
+         }
+         
+        /* 
+         * Formats a parameter for a map-hash relationship.
+         * 
+         * @parameters:
+	 *
+	 *         · string	: Hashing key.
+	 * 
+         * @return:
+ 	 *
+         *         · string	: key hash value
+         */             
+         
+         public static function Limits($key, $hash, $value)
+         {
+              return $key . ' ' . $hash . ' ' . $value;
+         }
+
+        /* 
+         * This function is a combination of Limits and Key.
+         * 
+         * @return:
+ 	 *
+         *         · string	: key hash "value"
+         */    
+         
+         public static function Hash($key, $hash, $value)
+         {
+             return $key . ' ' . $hash . ' "' . $value . '"';
+         }
 }
 
 ?>

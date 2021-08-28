@@ -22,6 +22,15 @@ class Client
 {
           public $client;
           
+         /* 
+          * Creates a new Server, while checking for validity of arguments
+          * provided.
+          * 
+          * @parameters:
+	  *
+	  *         · $args	: These include host, port, etc.
+          */              
+         
           public function __construct($args)
           {
                $this->client = new Server($this->check_args($args));
@@ -38,7 +47,7 @@ class Client
                return $cmd->Run();
           }
 
-          public function Expires($key)
+          public function expires($key)
           {
                $cmd = new Commands\Expires($this->client, $key);
                return $cmd->Run();
@@ -50,6 +59,18 @@ class Client
                return $cmd->Run();
           }
 
+          public function toupper($key)
+          {
+               $cmd = new Commands\ToUpper($this->client, $key);
+               return $cmd->Run();
+          }
+          
+          public function tolower($key)
+          {
+               $cmd = new Commands\ToLower($this->client, $key);
+               return $cmd->Run();
+          }
+          
           public function getdel($key)
           {
                $cmd = new Commands\Getdel($this->client, $key);

@@ -21,13 +21,13 @@ abstract class BrldCommand implements CommandInterface
     private $parameters;
     private $client;
     
-    public $iter     = false;
-    public $extra    = false;
-    public $comillas = false;
-    public $msg	     = false;
+    public $iter     =   false;
+    public $extra    =   false;
+    public $comillas =   false;
+    public $msg	     =   false;
     
-    public $ok       = Protocol::BRLD_OK;
-    public $err      = array(Protocol::ERR_INPUT);
+    public $ok       =   Protocol::BRLD_OK;
+    public $err      =   array(Protocol::ERR_INPUT);
 
     public function __construct($client, $command, $parameters)
     {

@@ -14,6 +14,11 @@
 
 namespace Beryl\Connection;
 
+/* 
+ * This class define basic protocols that match the ones
+ * defined in the BerylDB protocol. 
+ */
+ 
 class Protocol
 {
     const  BRLD_CONNECTED	=	108;

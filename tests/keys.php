@@ -18,9 +18,15 @@ $client = new Beryl\Connection\Client([
                    ]);
 
 echo $client->set("hello", "world") . "\n";    /* OK */
+
+/* Wildcard match */
+
 echo $client->ismatch("hello", "wo*") . "\n";  /* 1 */
 
 echo $client->strlen("hello") 	    . "\n"; /* 5 */
+
+/* Check if hello actually exists */
+
 echo $client->exists("hello")       . "\n"; /* 1 */
 
 echo $client->type("hello")         . "\n"; /* KEY */
@@ -30,6 +36,9 @@ echo $client->get("hello")          . "\n"; /* 0 */
 echo $client->set("a", "b")         . "\n"; /* OK */
 echo $client->set("c", "d")         . "\n"; /* OK */
 
+/* Redefine 'a's value as upper letters */
+
+echo $client->toupper("a")         . "\n"; /* OK */
 
 $results = $client->search("*");
 

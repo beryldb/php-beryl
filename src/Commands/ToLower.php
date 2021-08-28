@@ -12,22 +12,16 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Connection;
+namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-/* 
- * Returns current version. This class is used to keep track
- * of current version. It is also used when running workflows on GitHub.
- */
- 
-class Version
+final class ToLower extends BrldCommand
 {
-    public function __construct()
+    public function __construct($client, $key)
     {
-
-    }
-
-    public function Get()
-    {
-         return "0.0.1";
+         $this->command    = "TOLOWER";
+         parent::__construct($client, $this->command, $key);
     }
 }
+
+?>

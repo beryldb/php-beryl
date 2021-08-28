@@ -73,15 +73,24 @@ class Server implements ServerInterface
                    exit;
               }
         }   
-        
+ 
+        /* 
+         * This function sends a raw message to the remote server without
+         * reading for a response.
+         * 
+         * @parameters:
+	 *
+	 *         · Command : Command to send.
+         */           
+         
         public function sendraw(CommandInterface $command)
         {
-            if (!$this->resource) 
-            {
-                throw new ConnectionException();
-            }
+              if (!$this->resource) 
+              {
+                   throw new ConnectionException();
+              }
 
-            fwrite($this->resource, $command);
+              fwrite($this->resource, $command);
         }
         
         public function read() 
@@ -101,35 +110,35 @@ class Server implements ServerInterface
     
                  if ($this->debug)
                  {
-                       echo $message . "\r\n";
+                        echo $message . "\r\n";
                  }
                  
                  $this->last_code = $str[1];                 
 
                  if ($this->last_code == Protocol::ERR_WRONG_PASS)
                  {
-                      echo "Incorrect login.\n\r";
-                      exit;
+                        echo "Incorrect login.\n\r";
+                        exit;
                  }
                  
                  if ($this->last_code == Protocol::BRLD_RESTART)
                  {
-                      echo "Restarting\n\r";
-                      die;
+                        echo "Restarting\n\r";
+                        die;
                  }
                  
                  if ($this->last_code == Protocol::ERR_MISS_PARAMS)
                  {
-                      echo "Missing parameters: " . $this->lastcmd;
-                      die;
+                        echo "Missing parameters: " . $this->lastcmd;
+                        die;
                  }
                  
                  if ($this->last_code == Protocol::BRLD_CONNECTED)
                  {
-                       $this->me     = $str[2];
-                       $this->buffer = [];
+                        $this->me     = $str[2];
+                        $this->buffer = [];
                   
-                       break;
+                        break;
                  }
                  
                  if ($this->lastcmd->iter && in_array($this->last_code, $this->lastcmd->err))
@@ -208,6 +217,8 @@ class Server implements ServerInterface
              return $this->read();
         }
 
+        /* Disconnects from remote server */
+        
         public function disconnect()
         {
               stream_socket_shutdown($this->resource, STREAM_SHUT_WR);
