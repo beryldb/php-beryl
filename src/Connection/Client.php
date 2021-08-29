@@ -266,7 +266,6 @@ class Client
                 return $cmd->Run();
           }
 
-
           public function vlow($key)
           {
                 $cmd = new Commands\VLow($this->client, $key);
@@ -809,6 +808,18 @@ class Client
           public function resume($key)
           {
                $cmd = new Commands\Resume($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function mute($key)
+          {
+               $cmd = new Commands\Mute($this->client, $key);
+               return $cmd->Run();
+          }
+
+          public function unmute($key)
+          {
+               $cmd = new Commands\UnMute($this->client, $key);
                return $cmd->Run();
           }
 
