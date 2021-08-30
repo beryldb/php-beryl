@@ -4,9 +4,6 @@
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 <br>
 
-This README is a brief introduction to PHP-Beryl. For extended information, you
-can visit our documentation site at [docs.beryl.dev](https://docs.beryl.dev/api/php/).
-
 If you want to learn more about BerylDB and how to install it, feel free to check our
 documentation at [docs.beryl.dev](https://docs.beryl.dev/).
 Follow us on [Twitter](https://twitter.com/beryldb).
