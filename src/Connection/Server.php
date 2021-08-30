@@ -81,7 +81,7 @@ class Server implements ServerInterface
          * 
          * @parameters:
 	 *
-	 *         · Command : Command to send.
+	 *         · CommandInterface : Command to send.
          */           
          
         public function sendraw(CommandInterface $command)
@@ -100,7 +100,7 @@ class Server implements ServerInterface
 
              while ($message = stream_get_line($this->resource, 2048, "\r\n"))
              {
-                 $str = explode(" ", $message);
+                  $str = explode(" ", $message);
     
                   if ($str[0] == Protocol::BRLD_PING)
                   {
@@ -206,7 +206,7 @@ class Server implements ServerInterface
          * 
          * @parameters:
 	 *
-	 *         · $command    : Command to deliver.
+	 *         · CommandInterface    : Command to deliver.
          *
          * @return:
          *
