@@ -20,13 +20,13 @@ files. If you are using Composer, autoloading should be managed automatically.
 PHP-beryl requries [composer](http://getcomposer.org). You may install
 composer on Mac OS:
 
-```
+```bash
 brew install composer
 ```
 
 * On Debian-based systems:
 
-```
+```bash
 sudo apt update
 sudo apt install curl php-cli php-mbstring git unzip
 curl -sS https://getcomposer.org/installer -o composer-setup.php
@@ -34,7 +34,7 @@ curl -sS https://getcomposer.org/installer -o composer-setup.php
 
 * Installing php-beryl's dependencies:
 
-```
+```bash
 composer install
 ```
 
@@ -42,7 +42,7 @@ composer install
 
 In order to run your php-beryl, you must load autoload.php:
 
-```php 
+```bash
 <?php
 
 require __DIR__.'/vendor/autoload.php';
@@ -55,7 +55,6 @@ host ``127.0.0.1`` and port ``6378``.
 
 ```php 
 <?php
-
 require __DIR__.'/vendor/autoload.php';
 
 $client = new Beryl\Connection\Client([  
@@ -87,7 +86,7 @@ echo $client->get("hello");
 
 This script will return:
 
-```
+```bash
 OK
 world
 ```
@@ -215,7 +214,7 @@ echo $client->lfront("a", "100")  // => 0
 Finally, if what you need is to iterate over all items in a list 'a', you
 may very well use a foreach:
 
-```
+```php
 $results = $client->lget("ab");
 
 if ($results)
@@ -229,7 +228,7 @@ if ($results)
 
 This will print:  
 
-```
+```php
 123456789
 ```
 
@@ -246,13 +245,13 @@ echo $client->geoadd("Miami", 25.761681, -80.191788);
 echo $client->geoadd("Los_Angeles", 34.052235, -118.243683);
 ```
 
-```
+```php
 echo $client->geodist("Los_Angeles", "Miami") => // 4222.46 
 ```
 
 This would be the equivalent of running in [Beryl-cli](https://github.com/beryldb/beryldb-cli):
 
-```
+```bash
 beryl> GCALC Los_Angeles Miami
 4222.46
 ```
@@ -263,7 +262,7 @@ beryl> GCALC Los_Angeles Miami
 If you wish to connect Beryl in debugging mode, you need to pass this
 argument when connecting:
 
-```
+```bash
 'debug' => true
 ```
 
