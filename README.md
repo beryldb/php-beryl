@@ -42,7 +42,7 @@ composer install
 
 In order to run your php-beryl, you must load autoload.php:
 
-```
+```php 
 <?php
 
 require __DIR__.'/vendor/autoload.php';
@@ -53,7 +53,7 @@ require __DIR__.'/vendor/autoload.php';
 When creating a client instance without any parameter, php-beryl uses
 host ``127.0.0.1`` and port ``6378``.
 
-```
+```php 
 <?php
 
 require __DIR__.'/vendor/autoload.php';
@@ -80,7 +80,7 @@ Feel free to check `example.php` and files in the `test/` directory.
 Most php-beryl functions have the same name as any other BerylDB function.
 For instance, if you want to execute a basic key set:
 
-```
+```php 
 echo $client->set("hello", "world");
 echo $client->get("hello");
 ```
@@ -95,7 +95,7 @@ world
 In case of requesting for a key that is not defined, a 0 (false) will be
 returned. For instance:
 
-```
+```php 
 echo $client->get("undefined_key") // => 0
 ```
 
