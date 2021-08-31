@@ -102,19 +102,19 @@ echo $client->get("undefined_key") // => 0
 In BerylDB, different structues cannot hold the same variable name. In order
 to check what kind of data structure is a given key:
 
-```
+```php 
 echo $client->type("a") // => KEY
 ```
 
 If you would like to flush (reset) your current database:
 
-```
+```php 
 echo $client->flushdb();
 ```
 
 If you would like to flush all databases instead:
 
-```
+```php 
 echo $client->flushall();
 ```
 
@@ -126,13 +126,13 @@ for instance:
 
 · Database size:
 
-```
+```php 
 echo $client->dbsize()  // => 133 KB
 ```
 
 · Current time in server:
 
-```
+```php 
 echo $client->time() // => Wed Aug 25 2021 16:08:31
 ```
 
@@ -140,7 +140,7 @@ or simple list all defined keys in server:
 
 $results = $client->keys("*");
 
-```
+```php 
 if ($results)
 {
      foreach ($results as $key)
@@ -155,7 +155,7 @@ if ($results)
 Operations commands typically have the same name as its base command, for
 instance:
 
-```
+```php 
 echo $client->incrby("a", 20) // => 20; /* Increases 'a' by 20 */
 echo $client->decrby("a", 20) // => 0;  /* Decreases 'a' by 20 */
 ```
@@ -163,7 +163,7 @@ echo $client->decrby("a", 20) // => 0;  /* Decreases 'a' by 20 */
 In addition to incrby, you may very well use BerylDB to keep track of basic
 counters:
 
-```
+```php 
 echo $client->incr("a") // => 1;  /* Increases 'a' by 1 */
 echo $client->decr("a") // => 0;  /* Decreases 'a' by 1 */
 ```
@@ -176,7 +176,7 @@ into a given list:
 In this example, we will be assuming that no other key type is using the
 'hello' key.
 
-```
+```php 
 echo $client->lpush("hello", "world") // => OK
 ```
 
@@ -194,20 +194,20 @@ Let's assume that list a has the following keys:
 
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-```
+```php 
 echo $client->lback("a") // => 9
 echo $client->lfront("a") // => 1
 ```
 
 In case that you would like to access a given position:
 
-```
+```php 
 echo $client->lpos("a", 3) // => 4
 ```
 
 or if you need to verify whether given items are actually defined:
 
-```
+```php 
 echo $client->lexists("a", "5")   // => 1
 echo $client->lfront("a", "100")  // => 0
 ```
@@ -241,7 +241,7 @@ $results will return a 0 (false).
 You can also use this PHP api in order to calculate the distance between two
 geo coordinates (in kilometers):
 
-```
+```php 
 echo $client->geoadd("Miami", 25.761681, -80.191788);
 echo $client->geoadd("Los_Angeles", 34.052235, -118.243683);
 ```
