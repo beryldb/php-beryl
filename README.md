@@ -20,13 +20,13 @@ files. If you are using Composer, autoloading should be managed automatically.
 PHP-beryl requries [composer](http://getcomposer.org). You may install
 composer on Mac OS:
 
-```bash
+```console
 brew install composer
 ```
 
 * On Debian-based systems:
 
-```bash
+```console
 sudo apt update
 sudo apt install curl php-cli php-mbstring git unzip
 curl -sS https://getcomposer.org/installer -o composer-setup.php
@@ -34,7 +34,7 @@ curl -sS https://getcomposer.org/installer -o composer-setup.php
 
 * Installing php-beryl's dependencies:
 
-```bash
+```console
 composer install
 ```
 
@@ -42,7 +42,7 @@ composer install
 
 In order to run your php-beryl, you must load autoload.php:
 
-```bash
+```php
 <?php
 
 require __DIR__.'/vendor/autoload.php';
@@ -86,7 +86,7 @@ echo $client->get("hello");
 
 This script will return:
 
-```bash
+```console
 OK
 world
 ```
@@ -107,7 +107,7 @@ echo $client->type("a") // => KEY
 
 If you would like to flush (reset) your current database:
 
-```php 
+```php
 echo $client->flushdb();
 ```
 
@@ -251,7 +251,7 @@ echo $client->geodist("Los_Angeles", "Miami") => // 4222.46
 
 This would be the equivalent of running in [Beryl-cli](https://github.com/beryldb/beryldb-cli):
 
-```bash
+```console
 beryl> GCALC Los_Angeles Miami
 4222.46
 ```
@@ -262,7 +262,7 @@ beryl> GCALC Los_Angeles Miami
 If you wish to connect Beryl in debugging mode, you need to pass this
 argument when connecting:
 
-```bash
+```console
 'debug' => true
 ```
 
