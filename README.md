@@ -138,9 +138,9 @@ echo $client->time() // => Wed Aug 25 2021 16:08:31
 
 or simple list all defined keys in server:
 
+```php 
 $results = $client->keys("*");
 
-```php 
 if ($results)
 {
      foreach ($results as $key)
@@ -183,7 +183,7 @@ echo $client->lpush("hello", "world") // => OK
 However, in some cases, a conflict may arouse. Let's assume that you have
 previously defined 'hello' with another data type:
 
-```
+```php 
 echo $client->set("hello", "world") // => OK
 echo $client->lpush("hello", "world") // => 0
 ```
@@ -192,9 +192,9 @@ As you can see above, 'hello' is defined and a 0 (false) will be returned.
 
 Let's assume that list a has the following keys:
 
+```php 
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-```php 
 echo $client->lback("a") // => 9
 echo $client->lfront("a") // => 1
 ```
