@@ -169,6 +169,12 @@ class Client
                 return $cmd->Run();
           }
 
+          public function setdefault($key)
+          {
+                $cmd = new Commands\SetDefault($this->client, $key);
+                return $cmd->Run();
+          }
+
           public function dbdelete($key)
           {
                 $cmd = new Commands\DBDelete($this->client, $key);
@@ -446,6 +452,7 @@ class Client
                 $cmd = new Commands\Restart($this->client);
                 return $cmd->Run();
           }
+
 
           public function dbcreate($key, $value)
           {
