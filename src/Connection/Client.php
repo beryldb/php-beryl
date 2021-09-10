@@ -53,6 +53,12 @@ class Client
                return $cmd->Run();
           }
 
+          public function occurs($key, $value)
+          {
+               $cmd = new Commands\Occurs($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
           public function getset($key, $value)
           {
                $cmd = new Commands\Getset($this->client, $key, $value);
