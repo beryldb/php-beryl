@@ -36,6 +36,10 @@ echo $client->get("hello")          . "\n"; /* 0 */
 echo $client->set("a", "b")         . "\n"; /* OK */
 echo $client->set("c", "d")         . "\n"; /* OK */
 
+/* Copy a to x */
+
+echo $client->copy("a", "x")       . "\n"; /* OK */
+
 /* Redefine 'a's value as upper letters */
 
 echo $client->toupper("a")         . "\n"; /* OK */
