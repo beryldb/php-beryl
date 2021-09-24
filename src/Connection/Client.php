@@ -351,6 +351,12 @@ class Client
                 return $cmd->Run();
           }
 
+          public function vdel($key, $value)
+          {
+               $cmd = new Commands\VDel($this->client, $key, $value);
+               return $cmd->Run();
+          }
+
           public function vpushnx($key, $value)
           {
                $cmd = new Commands\VPushNX($this->client, $key, $value);

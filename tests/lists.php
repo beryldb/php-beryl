@@ -19,6 +19,15 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
+for ($i = 0; $i < 100;$i++)
+{
+
+ echo $client->lpush("a", $i)     . "\n"; /* OK */
+
+}
+
+exit;
+
 /* Push an item hello */
 
 echo $client->lpush("hello", "world")     . "\n"; /* OK */
