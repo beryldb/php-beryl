@@ -15,22 +15,40 @@ $client = new Beryl\Connection\Client([
                    'debug' => false         /* Print raw data from remote server */
                    ]);
 
+try
+{
+     echo $client->get("hello")             . "\n";
+} 
+catch (Exception $error) 
+{
+    echo $error->getCode()                  . "\n";
+}
+
+try
+{
+     echo $client->set("hello", "world")   . "\n";
+} 
+catch (Exception $error) 
+{
+    echo $error->getMessage()              .  "\n";
+}
+
 /* Remove all entries */
 
-echo $client->flushall();
+echo $client->flushall()                   . "\n";
 
 /* Create variable hello and set it to 'world' */
 
-echo $client->set("hello", "world") 	. "\n";
-echo $client->set("test", "entry") 	. "\n";
+echo $client->set("hello", "world")       . "\n";
+echo $client->set("test", "entry")        . "\n";
 
 /* Returns third character (l) in key 'hello' */
 
-echo $client->char("hello", 3)     . "\n";
+echo $client->char("hello", 3)            . "\n";
 
 /* Set var to 100 */
 
-echo $client->set("var", "100") 	. "\n";
+echo $client->set("var", "100")           . "\n";
 
 /* Increment var by 1 */
 

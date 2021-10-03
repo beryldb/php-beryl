@@ -14,6 +14,7 @@
 
 namespace Beryl\Connection;
 use Beryl\Base\Command as CommandInterface;
+use Exception;
 
 abstract class BrldCommand implements CommandInterface
 {
@@ -56,12 +57,18 @@ abstract class BrldCommand implements CommandInterface
  
          if ($response->status != $this->ok)
          {
-               switch ($response->status)
-               {
-                    case Protocol::ERR_INPUT:
-                           return 0;
-                    break;
-               }
+                 
+              $str = explode(" ", $response->simple); 
+         
+              unset($str[0]);
+              unset($str[1]);
+              unset($str[2]);
+         
+              $value = implode(" ", $str);
+              $str   = explode(":", $value); 
+                 
+              throw new \Exception($str[1], $response->status);                           
+              return;
          }
 
          $str = explode(" ", $response->simple); 

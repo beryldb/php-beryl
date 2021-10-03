@@ -22,8 +22,6 @@ final class Get extends BrldCommand
     
     public function __construct($client, $key)
     {
-         $this->parameters = Format::Limits($key, $offset, $limit);
-
          $this->command    = "GET";
          parent::__construct($client, $this->command, $key);
     }
