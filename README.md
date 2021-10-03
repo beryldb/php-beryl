@@ -94,11 +94,18 @@ OK
 world
 ```
 
-In case of requesting for a key that is not defined, a 0 (false) will be
-returned. For instance:
+In case of requesting for a key that is not defined, a Throw exception will be
+raised. For instance:
 
 ```php 
-echo $client->get("undefined_key") // => 0
+try
+{
+     echo $client->get("hello")             . "\n";
+} 
+catch (Exception $error) 
+{
+    echo $error->getCode()                  . "\n";
+}
 ```
 
 In BerylDB, different structues cannot hold the same variable name. In order
