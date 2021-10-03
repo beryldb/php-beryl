@@ -1,8 +1,12 @@
-<a target="_blank" href="https://twitter.com/beryldb"><img src="https://img.shields.io/twitter/url/https/twitter.com/cloudposse.svg?style=social&label=Follow%20%40beryldb"></a>
 <a target="_blank" href="https://github.com/beryldb/php-beryl/actions"><img src="https://github.com/beryldb/php-beryl/workflows/PHP%20Composer/badge.svg?4"></a>
-<a target="_blank" href="https://github.com/beryldb/php-beryl/pulse" alt="Activity"> <img src="https://img.shields.io/github/commit-activity/m/beryldb/php-beryl" /></a>
+[![Mailing List](https://img.shields.io/badge/email-google%20groups-4285F4 "beryldb@googlegroups.com")](https://groups.google.com/g/beryldb)
+[![Twitter](https://img.shields.io/twitter/follow/beryldb?color=%23179CF0&logo=twitter&style=flat-square "@beryldb on Twitter")](https://twitter.com/beryldb)
+[![Discord Server](https://img.shields.io/discord/823028202318200912?color=7289da&logo=discord "Discord Server")](https://discord.gg/GRCEuMdYRt)
+
 [![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 <br>
+
+
 
 If you want to learn more about BerylDB and how to install it, feel free to check our
 documentation at [docs.beryl.dev](https://docs.beryl.dev/).<br>
