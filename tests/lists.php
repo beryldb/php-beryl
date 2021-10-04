@@ -19,15 +19,6 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
-for ($i = 0; $i < 100;$i++)
-{
-
- echo $client->lpush("a", $i)     . "\n"; /* OK */
-
-}
-
-exit;
-
 /* Push an item hello */
 
 echo $client->lpush("hello", "world")     . "\n"; /* OK */
@@ -39,6 +30,23 @@ echo $client->lcount("hello", "world")    . "\n"; /* 1 */
 echo $client->lsort("hello")   		  . "\n"; /* OK */
 echo $client->lpos("hello", 0) 		  . "\n"; /* => world */
 
+
+try
+{
+    $results = $client->lget("hello");
+
+    if ($results)
+    {
+          foreach ($results as $key)
+          {
+                printf("%s\n", $key);
+          } 
+    } 
+    
+} catch (Exception $error) 
+{
+          echo $error->getMessage()              .  "\n";
+} 
 
 /* List all keys */
 

@@ -68,7 +68,14 @@ echo $client->expire("var", "300")       . "\n";
 
 /* Seconds remaining before 'var' expires */
 
-echo $client->ttl("var")                . "\n";
+try
+{
+     echo $client->ttl("var")             . "\n";
+} 
+catch (Exception $error) 
+{
+     echo $error->getMessage()            . "\n";
+}
 
 /* Search for all key items. */
 
