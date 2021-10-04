@@ -34,6 +34,7 @@ class Client
           public function __construct($args)
           {
                $this->client = new Server($this->check_args($args));
+
           }
           
           public function Connect()

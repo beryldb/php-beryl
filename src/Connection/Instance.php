@@ -12,18 +12,18 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Commands;
-use Beryl\Connection\BrldCommand;
-
-final class Getdel extends BrldCommand
+namespace Beryl\Connection;
+ 
+class Instance
 {
-      public $comillas = true;
+    public function __construct()
+    {
 
-      public function __construct($client, $key)
-      {
-          $this->command    = "GETDEL";
-          parent::__construct($client, $this->command, $key);
-      }
+    }
+
+    public static function Exit($msg)
+    {
+         echo $msg;
+         exit;
+    }
 }
-
-?>

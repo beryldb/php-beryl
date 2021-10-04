@@ -36,6 +36,8 @@ class Protocol
     const  BRLD_RESTART		=	289;
     const  BRLD_NOTIFICATION	= 	277;
     const  BRLD_MONITOR		=	245;
+    const  BRLD_JOIN           =       145;
+    
 }
 
 ?>

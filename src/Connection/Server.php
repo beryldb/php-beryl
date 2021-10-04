@@ -16,6 +16,7 @@ namespace Beryl\Connection;
 
 use Beryl\Connection\Protocol;
 use Beryl\Base\Response;
+use Beryl\Connection\Instance;
 
 use Beryl\Base\Server as ServerInterface;
 use Beryl\Base\Command as CommandInterface;
@@ -44,11 +45,11 @@ class Server implements ServerInterface
 
               if (isset($args['debug']))
               {	
-                 $this->debug = $args['debug'];
+                   $this->debug = $args['debug'];
               }
               else
               {
-                 $this->debug = false;
+                   $this->debug = false;
               }
 
               $this->errorno = null;
@@ -70,8 +71,7 @@ class Server implements ServerInterface
         {
               if (!$this->resource = @stream_socket_client("tcp://{$this->host}:{$this->port}", $this->errorno, $this->error_msg, $this->timeout)) 
               {
-                   echo "Unable to connect to " . $this->host . ":" . $this->port . " $this->error_message\r\n";
-                   exit;
+                    Instance::Exit("Unable to connect to " . $this->host . ":" . $this->port . " " . $this->error_message);
               }
         }   
  
@@ -125,25 +125,30 @@ class Server implements ServerInterface
                  
                  if ($this->last_code == Protocol::ERR_WRONG_PASS)
                  {
-                        echo "Incorrect login.\n\r";
-                        exit;
+                        Instance::Exit("Incorrect login.");
                  }
                  
                  if ($this->last_code == Protocol::BRLD_RESTART)
                  {
-                        echo "Restarting\n\r";
-                        die;
+                        Instance::Exit("Restarting.");
                  }
                  
                  if ($this->last_code == Protocol::ERR_MISS_PARAMS)
                  {
-                        echo "Missing parameters: " . $this->lastcmd;
-                        die;
+                         Instance::Exit("Missing parameters: " + $this->lastcmd);
                  }
                  
                  if ($this->last_code == Protocol::BRLD_CONNECTED)
                  {
-                        $this->me     = $str[2];
+                        if (isset($str[2]))
+                        {
+                               $this->me     = $str[2];
+                        }
+                        else
+                        {
+                               Instance::Exit("Error while connecting.");
+                        }
+
                         $this->buffer = [];
                   
                         break;
