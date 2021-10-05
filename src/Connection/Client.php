@@ -99,40 +99,19 @@ class Client
           public function commands($key = "")
           {
                 $cmd = new Commands\Commands($this->client, $key);
-                $cmd->Run();
-
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-
-                return $cmd->items;
+                return $cmd->Run();
           }
 
           public function coremodules($key = "")
           {
                 $cmd = new Commands\Coremodules($this->client, $key);
-                $cmd->Run();
-
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-
-                return $cmd->items;
+                return $cmd->Run();
           }
           
           public function modules($key = "")
           {
                 $cmd = new Commands\Modules($this->client, $key);
-                $cmd->Run();
-
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-
-                return $cmd->items;
+                return $cmd->Run();
           }
 
           public function setnx($key, $value)
@@ -257,14 +236,7 @@ class Client
           public function hgetall($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\HGetAll($this->client, $key, $offset, $limit);
-                $cmd->Run();
-                
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-                
-                return $cmd->items;
+                return $cmd->Run();
           }
 
           public function hstrlen($key, $hash)
@@ -518,13 +490,7 @@ class Client
           public function vget($key, $offset = "", $limit = "")
           {
                $cmd = new Commands\VGet($this->client, $key, $offset, $limit);
-               
-               if ($cmd->status != Protocol::BRLD_END_LIST)
-               {
-                      return $cmd->status;
-               }
-                
-                return $cmd->list;
+               return $cmd->Run();
           }
 
           public function lpopfront($key)
@@ -608,40 +574,19 @@ class Client
           public function lget($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\LGet($this->client, $key, $offset, $limit);
-                $cmd->Run();
-            
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-                
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function mkeys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\MKeys($this->client, $key, $offset, $limit);
-                $cmd->Run();
-            
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-            
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function mget($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\MGet($this->client, $key, $offset, $limit);
-                $cmd->Run();
-                
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-                
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function change($key)
@@ -707,92 +652,43 @@ class Client
           public function search($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\Search($this->client, $key, $offset, $limit);
-                $cmd->Run();
-            
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-            
-                return $cmd->items;
+                return $cmd->Run();
           }
 
           public function keys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\Keys($this->client, $key, $offset, $limit);
-                $cmd->Run();
-            
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-                
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function lkeys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\LKeys($this->client, $key, $offset, $limit);
-                $cmd->Run();
-
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-            
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function vkeys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\VKeys($this->client, $key, $offset, $limit);
-                $cmd->Run();
-
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-            
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function hlist($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\HList($this->client, $key, $offset, $limit);
-                $cmd->Run();
-            
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-            
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function hvals($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\HVals($this->client, $key, $offset, $limit);
-                $cmd->Run();
- 
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-            
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function hkeys($key, $offset = "", $limit = "")
           {
                 $cmd = new Commands\HKeys($this->client, $key, $offset, $limit);
-                $cmd->Run();
-            
-                if ($cmd->status != Protocol::BRLD_END_LIST)
-                {
-                      return $cmd->status;
-                }
-                
-                return $cmd->list;
+                return $cmd->Run();
           }
 
           public function isalpha($key)

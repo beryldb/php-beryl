@@ -54,7 +54,16 @@ abstract class CustomListCommand implements CommandInterface
           
           if ($this->status != Protocol::BRLD_END_LIST)
           {
-               $this->status = 0;
+               $str = explode(" ", $response->simple); 
+         
+               unset($str[0]);
+               unset($str[1]);
+               unset($str[2]);
+         
+               $value = implode(" ", $str);
+               $str   = explode(":", $value); 
+           
+               throw new \Exception($str[1], $this->status);
                return;
           }
           
@@ -65,8 +74,12 @@ abstract class CustomListCommand implements CommandInterface
                    $result->append_stack($response->stack);
           }
 
-          $this->items = $result->items;
-          $this->list = $result->list;
+          if ($this->dual)
+          {
+              return $this->items = $result->items;
+          }
+          
+          return $this->list = $result->list;
     }
 
 }

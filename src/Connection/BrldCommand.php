@@ -57,7 +57,6 @@ abstract class BrldCommand implements CommandInterface
  
          if ($response->status != $this->ok)
          {
-                 
               $str = explode(" ", $response->simple); 
          
               unset($str[0]);

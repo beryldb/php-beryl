@@ -1,7 +1,9 @@
 <?php
 
-/*
- * This is an example script for php-beryl.
+/* 
+ * This is an example script for php-beryl. 
+ * Note that this script runs flushall() at its very
+ * beginning, which means that all data will be deleted.
  */
  
 require __DIR__.'/vendor/autoload.php';
@@ -15,9 +17,11 @@ $client = new Beryl\Connection\Client([
                    'debug' => false         /* Print raw data from remote server */
                    ]);
 
+$client->flushall();
+
 try
 {
-     echo $client->get("hello")             . "\n";
+     echo $client->hset("map", "hello", "test")   . "\n";
 } 
 catch (Exception $error) 
 {

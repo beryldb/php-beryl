@@ -43,7 +43,8 @@ try
           } 
     } 
     
-} catch (Exception $error) 
+} 
+catch (Exception $error) 
 {
           echo $error->getMessage()              .  "\n";
 } 

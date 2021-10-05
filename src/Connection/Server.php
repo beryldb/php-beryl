@@ -157,7 +157,7 @@ class Server implements ServerInterface
                  if ($this->lastcmd->iter && in_array($this->last_code, $this->lastcmd->err))
                  {
                         $response         = new Response($this->last_code, $this->buffer);
-                        $response->simple = $this->buffer[$this->last_code];
+                        $response->simple = $message;
                         $this->buffer     = [];
                   
                         return $response;
