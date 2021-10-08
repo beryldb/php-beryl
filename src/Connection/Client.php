@@ -114,6 +114,12 @@ class Client
                 return $cmd->Run();
           }
 
+          public function settx($key, $value)
+          {
+                $cmd = new Commands\Settx($this->client, $key, $value);
+                return $cmd->Run();
+          }
+
           public function setnx($key, $value)
           {
                 $cmd = new Commands\Setnx($this->client, $key, $value);

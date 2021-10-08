@@ -100,20 +100,20 @@ class Server implements ServerInterface
 
              while ($message = stream_get_line($this->resource, 2048, "\r\n"))
              {
-                  $str = explode(" ", $message);
+                 $str = explode(" ", $message);
+
+                 if ($this->debug)
+                 {
+                        echo $message . "\r\n";
+                 }
     
-                  if ($str[0] == Protocol::BRLD_PING)
-                  {
+                 if ($str[0] == Protocol::BRLD_PING)
+                 {
                          $this->lastping = microtime(true);
                          $this->sendraw(new Pong(":1"));
                          continue;
                  }
     
-                 if ($this->debug)
-                 {
-                        echo $message . "\r\n";
-                 }
-                 
                  $this->last_code = $str[1];                 
 
                  /* These operations are NOT supported by this PHP api. */

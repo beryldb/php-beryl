@@ -16,7 +16,7 @@ namespace Beryl\Commands;
 use Beryl\Connection\BrldCommand;
 use Beryl\Base\Format;
 
-final class SetNx extends BrldCommand
+final class Setnx extends BrldCommand
 {
       public function __construct($client, $key, $value)
       {

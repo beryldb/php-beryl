@@ -28,7 +28,7 @@ abstract class BrldCommand implements CommandInterface
     public $msg	     =   false;
     
     public $ok       =   Protocol::BRLD_OK;
-    public $err      =   array(Protocol::ERR_INPUT);
+    public $err      =   array(Protocol::ERR_INPUT, Protocol::ERR_INPUT2, Protocol::ERR_INPUT3);
 
     public function __construct($client, $command, $parameters)
     {

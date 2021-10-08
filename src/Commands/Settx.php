@@ -12,26 +12,19 @@
  * More information about our licensing can be found at https://docs.beryl.dev
  */
 
-namespace Beryl\Connection;
- 
-class Instance
+namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
+use Beryl\Base\Format;
+
+final class Settx extends BrldCommand
 {
-    public function __construct()
-    {
-
-    }
-
-    public static function Exit($msg = "")
-    {
-         if ($msg == "")
-         {
-              echo "An error has occured.";
-         }
-         else
-         {
-             echo $msg;
-         }
-         
-         exit;
-    }
+      public function __construct($client, $key, $value)
+      {
+          $this->parameters = Format::Key($key, $value);
+          $this->command    = "SETTX";
+        
+          parent::__construct($client, $this->command, $this->parameters);
+      }
 }
+
+?>
