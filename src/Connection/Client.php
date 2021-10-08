@@ -126,6 +126,18 @@ class Client
                 return $cmd->Run();
           }
 
+          public function multi()
+          {
+                $cmd = new Commands\Multi($this->client);
+                return $cmd->Run();
+          }
+
+          public function mrun()
+          {
+                $cmd = new Commands\MRun($this->client);
+                return $cmd->Run();
+          }
+
           public function exec($key)
           {
                 $cmd = new Commands\Exec($this->client, $key);
