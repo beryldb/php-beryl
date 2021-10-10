@@ -23,6 +23,7 @@ class Protocol
 {
     const  BRLD_CONNECTED	=	108;
     const  BRLD_OK	        =       164;
+    const  BRLD_RUN             =       165;
     const  ERR_INPUT            =       586;
     const  ERR_INPUT2           =       587;
     const  ERR_INPUT3           =       588;

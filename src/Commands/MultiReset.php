@@ -13,21 +13,16 @@
  */
 
 namespace Beryl\Commands;
+use Beryl\Connection\BrldCommand;
 
-use Beryl\Connection\CustomListCommand;
-use Beryl\Base\Format;
-
-final class Search extends CustomListCommand
+final class MultiReset extends BrldCommand
 {
-    public $dual     = true;
-    
-    public function __construct($client, $key, $offset, $limit)
+    public function __construct($client)
     {
-         $this->parameters = Format::Limits($key, $offset, $limit);
-         $this->command    = "SEARCH";
-         parent::__construct($client, $this->command, $this->parameters);
+         $this->command    = "MULTIRESET";
+        
+         parent::__construct($client, $this->command, "");
     }
 }
-
 
 ?>

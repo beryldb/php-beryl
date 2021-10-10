@@ -138,6 +138,12 @@ class Client
                 return $cmd->Run();
           }
 
+          public function multireset()
+          {
+                $cmd = new Commands\MultiReset($this->client);
+                return $cmd->Run();
+          }
+
           public function exec($key)
           {
                 $cmd = new Commands\Exec($this->client, $key);
