@@ -17,6 +17,7 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
+
 echo $client->set("hello", "world") . "\n";    /* OK */
 
 /* Wildcard match */
