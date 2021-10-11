@@ -13,6 +13,14 @@ Follow us on [Twitter](https://twitter.com/beryldb).
 
 ![Logo](https://docs.beryl.dev/img/smaller.png??)
 
+## QuickStart
+
+The quick start guide will show you how to set up a simple application using
+BerylDB's php driver.
+
+It scope is only how to set up the driver and perform the simple operations.
+For more advanced coverage, we encourage reading our tutorial.
+
 ## Loading 
 
 PHP-beryl utilizes the autoloading features of PHP in order to run its
@@ -23,13 +31,13 @@ files. If you are using Composer, autoloading should be managed automatically.
 PHP-beryl requries [composer](http://getcomposer.org). You may install
 composer on Mac OS:
 
-```console
+```
 brew install composer
 ```
 
 * On Debian-based systems:
 
-```console
+```
 sudo apt update
 sudo apt install curl php-cli php-mbstring git unzip
 curl -sS https://getcomposer.org/installer -o composer-setup.php
@@ -37,7 +45,7 @@ curl -sS https://getcomposer.org/installer -o composer-setup.php
 
 * Installing php-beryl's dependencies:
 
-```console
+```
 composer install
 ```
 
@@ -89,7 +97,7 @@ echo $client->get("hello");
 
 This script will return:
 
-```console
+```
 OK
 world
 ```
@@ -261,7 +269,7 @@ echo $client->geodist("Los_Angeles", "Miami") => // 4222.46
 
 This would be the equivalent of running in [Beryl-cli](https://github.com/beryldb/beryldb-cli):
 
-```console
+```
 beryl> GCALC Los_Angeles Miami
 4222.46
 ```
@@ -272,7 +280,7 @@ beryl> GCALC Los_Angeles Miami
 If you wish to connect Beryl in debugging mode, you need to pass this
 argument when connecting:
 
-```console
+```
 'debug' => true
 ```
 

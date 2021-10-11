@@ -27,7 +27,6 @@ class Server implements ServerInterface
 {
         public  $stack   = [];
         private $buffer  = [];
-        
         private $counter = 0;
         private $resource;
         private $host;

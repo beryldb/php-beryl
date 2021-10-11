@@ -23,8 +23,6 @@ $client = new Beryl\Connection\Client([
 
 echo $client->version()         . "\n"; /* BerylDB-0 BerylDB-0.8.3 */
 echo $client->dbsize() 		. "\n"; /* 0.1 KB */
-echo $client->time() 		. "\n"; /* Wed Aug 25 2021 18:11:09 */
-echo $client->epoch() 		. "\n"; /* 1629929469 */
 echo $client->current()         . "\n"; /* 1 */
 echo $client->db()              . "\n"; /* default */
 
