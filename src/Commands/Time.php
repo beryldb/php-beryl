@@ -14,12 +14,10 @@
 
 namespace Beryl\Commands;
 
-use Beryl\Connection\BrldCommand;
+use Beryl\Connection\Brld2Command;
 
-final class Time extends BrldCommand
+final class Time extends Brld2Command
 {
-    public $extra = true;
-    
     public function __construct($client)
     {
          $this->command = "TIME";
