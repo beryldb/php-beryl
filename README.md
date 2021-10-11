@@ -290,8 +290,16 @@ will be printed. This option is set to false by default, and it should be
 ethat way, unless you are implementing a new command in Beryl.
 
 
-## Development
+## Contributing
 
-Contributions to php-beryl are appreciated either in the form of pull requests for new features, 
-bug fixes, or simple to report a bug. If you wish to join our [Google groups](https://groups.google.com/g/beryldb).
+We are always welcoming new members. If you wish to start contributing code to the 
+Beryl project in any form, such as in the form of pull requests via Github, 
+a code snippet, or a patch, you will need to agree to release your work under the terms of the
+BSD license.
 
+## External Links
+
+* [Documentation](https://docs.beryl.dev)
+* [GitHub](https://github.com/beryldb/beryldb)
+* [Support/Discord](https://discord.gg/GRCEuMdYRt)
+* [Twitter](https://twitter.com/beryldb)
