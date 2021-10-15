@@ -19,8 +19,6 @@ use Beryl\Base\Format;
 
 final class VGet extends CustomListCommand
 {
-    public $comillas  = true;
-    
     public function __construct($client, $key, $offset, $limit)
     {
          $this->parameters = Format::Limits($key, $offset, $limit);

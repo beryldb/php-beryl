@@ -97,7 +97,6 @@ if ($results)
 
 echo $client->lpush("b", 1) 		. "\n";
 echo $client->lpush("b", 2) 		. "\n";
-echo $client->lpush("b", 3) 		. "\n";
 
 /* Print all items in list b */
 

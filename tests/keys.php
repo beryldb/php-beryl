@@ -38,7 +38,7 @@ echo $client->set("c", "d")         . "\n"; /* OK */
 
 /* Copy a to x */
 
-//echo $client->copy("a", "x")       . "\n"; /* OK */
+echo $client->copy("a", "x")       . "\n"; /* OK */
 
 /* Redefine 'a's value as upper letters */
 
