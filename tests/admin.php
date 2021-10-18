@@ -50,6 +50,8 @@ if ($results)
 
 echo $client->pwd()                . "\n"; /* OK */
 
+/* Following commands have been commented in order to avoid complications. */
+
 /* Restarts server */
 
 //echo $client->restart()            . "\n"; /* OK */
