@@ -265,7 +265,7 @@ echo $client->geoadd("Los_Angeles", 34.052235, -118.243683);
 ```
 
 ```php
-echo $client->geodist("Los_Angeles", "Miami") => // 4222.46 
+echo $client->gcalc("Los_Angeles", "Miami") => // 4222.46 
 ```
 
 This would be the equivalent of running in [Beryl-cli](https://github.com/beryldb/beryldb-cli):
