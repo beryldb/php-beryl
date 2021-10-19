@@ -16,7 +16,7 @@ namespace Beryl\Commands;
 use Beryl\Connection\BrldCommand;
 use Beryl\Base\Format;
 
-final class GeoCalc extends BrldCommand
+final class GCalc extends BrldCommand
 {
       public function __construct($client, $key, $value)
       {

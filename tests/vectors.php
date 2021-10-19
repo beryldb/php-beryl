@@ -14,6 +14,9 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
+
+echo $client->flushall()		  . "\n";
+
 /* Push an item hello */
 
 echo $client->vpush("hello", "world")     . "\n"; /* OK */
@@ -23,7 +26,6 @@ echo $client->vpush("hello", "world")     . "\n"; /* OK */
 echo $client->exists("hello")             . "\n"; /* 1 */
 echo $client->vsort("hello")   		  . "\n"; /* OK */
 echo $client->vpos("hello", 0) 		  . "\n"; /* => world */
-
 
 try
 {
@@ -36,7 +38,6 @@ try
                 printf("%s\n", $key);
           } 
     } 
-    
 } 
 catch (Exception $error) 
 {

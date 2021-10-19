@@ -105,7 +105,7 @@ foreach ($client->lget("b") as $key)
      printf("%s\n", $key);
 }
 
-/* Resize list b to 1 element (This will remove all elements from list.). */
+/* Resize list 'b' to 1 element (This will remove all elements from list.). */
 
 echo $client->lresize("b", 1)		   . "\n";
 

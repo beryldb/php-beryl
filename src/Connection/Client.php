@@ -625,9 +625,9 @@ class Client
                return $cmd->Run();
           }
           
-          public function geodist($key, $value)
+          public function gcalc($key, $value)
           {
-               $cmd = new Commands\GeoCalc($this->client, $key, $value);
+               $cmd = new Commands\GCalc($this->client, $key, $value);
                return $cmd->Run();
           }
           

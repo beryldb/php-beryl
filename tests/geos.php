@@ -21,4 +21,4 @@ $client = new Beryl\Connection\Client([
 
 echo $client->geoadd("Miami", 25.761681, -80.191788)        . "\n"; /* OK */
 echo $client->geoadd("Los_Angeles", 34.052235, -118.243683) . "\n"; /* OK */
-echo $client->geodist("Los_Angeles", "Miami")               . "\n"; /* 4222.46 */
+echo $client->gcalc("Los_Angeles", "Miami")               . "\n"; /* 4222.46 */
