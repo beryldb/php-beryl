@@ -17,7 +17,12 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default',
                    ]);
 
+/* FlushDB flushes current db */
+
 echo $client->flushdb()            . "\n"; /* OK */
+
+/* FlushAll flushes all databases */
+
 echo $client->flushall()           . "\n"; /* OK */
 
 /* Print all commands. */
@@ -48,7 +53,11 @@ if ($results)
 
 /* Server's pwd */
 
-echo $client->pwd()                . "\n"; /* OK */
+echo $client->pwd()                    . "\n"; /* OK */
+
+/* Load a module. Module forcejoin in this example. */
+
+echo $client->loadmodule("forcejoin") . "\n"; /* OK */
 
 /* Following commands have been commented in order to avoid complications. */
 

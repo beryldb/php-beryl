@@ -1,6 +1,6 @@
 <?php
 /*
- * Example about running vectors.
+ * Example on vectors.
  *
  * => php tests/vector.php
  */

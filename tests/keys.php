@@ -18,31 +18,33 @@ $client = new Beryl\Connection\Client([
                    ]);
 
 
-echo $client->set("hello", "world") . "\n";    /* OK */
+echo $client->flushall()                  .  "\n"; /* OK */
+
+echo $client->set("hello", "world") 	  .  "\n";    /* OK */
 
 /* Wildcard match */
 
-echo $client->ismatch("hello", "wo*") . "\n";  /* 1 */
+echo $client->ismatch("hello", "wo*")     . "\n";  /* 1 */
 
-echo $client->strlen("hello") 	    . "\n"; /* 5 */
+echo $client->strlen("hello") 	          . "\n"; /* 5 */
 
 /* Check if hello actually exists */
 
-echo $client->exists("hello")       . "\n"; /* 1 */
+echo $client->exists("hello")       	  . "\n"; /* 1 */
 
-echo $client->type("hello")         . "\n"; /* KEY */
-echo $client->getdel("hello")       . "\n"; /* world */
+echo $client->type("hello")               . "\n"; /* KEY */
+echo $client->getdel("hello")             . "\n"; /* world */
 
-echo $client->set("a", "b")         . "\n"; /* OK */
-echo $client->set("c", "d")         . "\n"; /* OK */
+echo $client->set("a", "b")               . "\n"; /* OK */
+echo $client->set("c", "d")               . "\n"; /* OK */
 
 /* Copy a to x */
 
-echo $client->copy("a", "x")       . "\n"; /* OK */
+echo $client->copy("a", "x")              .  "\n"; /* OK */
 
 /* Redefine 'a's value as upper letters */
 
-echo $client->toupper("a")         . "\n"; /* OK */
+echo $client->toupper("a")                . "\n"; /* OK */
 
 $results = $client->search("*");
 

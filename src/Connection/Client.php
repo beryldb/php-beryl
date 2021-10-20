@@ -191,6 +191,18 @@ class Client
                 return $cmd->Run();
           }
 
+          public function unloadmodule($key)
+          {
+                $cmd = new Commands\UnLoadModule($this->client, $key);
+                return $cmd->Run();
+          }
+
+          public function loadmodule($key)
+          {
+                $cmd = new Commands\LoadModule($this->client, $key);
+                return $cmd->Run();
+          }
+
           public function exists($key)
           {
                 $cmd = new Commands\Exists($this->client, $key);

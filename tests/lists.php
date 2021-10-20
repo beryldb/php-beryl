@@ -19,7 +19,7 @@ $client = new Beryl\Connection\Client([
                     'password' => 'default'
                    ]);
 
-echo $client->flushall() 		  .  "\n";
+echo $client->flushall() 		  .  "\n"; /* OK */
 
 /* Push an item hello */
 
