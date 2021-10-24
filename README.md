@@ -83,7 +83,7 @@ $client = new Beryl\Connection\Client([
 Most php-beryl commands have the same name as base function in BerylDB.
 Feel free to check `example.php` and files in the `test/` directory.
 
-* Check Beryl's [full list of commands](https://docs.beryl.dev/using/commands/).
+* Check Beryl's [full list of commands](https://docs.beryl.dev/commands/).
 
 
 ## Simple queries
