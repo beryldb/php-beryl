@@ -47,7 +47,7 @@ $ curl -sS https://getcomposer.org/installer -o composer-setup.php
 * Installing php-beryl's dependencies:
 
 ```
-composer install
+$ composer require beryldb/php-beryl:1.0.x-dev
 ```
 
 ## Running
