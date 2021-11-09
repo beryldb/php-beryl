@@ -29,6 +29,11 @@
       "Beryl\\Tests\\": "tests/"
     }
   },
+  "extra": {
+        "branch-alias": {
+            "dev-main": "1.0"
+        }
+  },  
   "authors": [
     {
       "name": "Carlos Ferry",

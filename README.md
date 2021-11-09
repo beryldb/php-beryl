@@ -1,3 +1,5 @@
+![Logo](https://static.beryl.dev/smaller.png)
+
 # php-beryl, a PHP driver for BerylDB.
 
 <a target="_blank" href="https://github.com/beryldb/php-beryl/actions"><img src="https://github.com/beryldb/php-beryl/workflows/PHP%20Composer/badge.svg?4"></a>
@@ -11,8 +13,6 @@
 If you want to learn more about BerylDB and how to install it, feel free to check our
 documentation at [docs.beryl.dev](https://docs.beryl.dev/).<br>
 Follow us on [Twitter](https://twitter.com/beryldb).
-
-![Logo](https://static.beryl.dev/smaller.png)
 
 ## QuickStart
 
@@ -33,15 +33,15 @@ PHP-beryl requries [composer](http://getcomposer.org). You may install
 composer on Mac OS:
 
 ```
-brew install composer
+$ brew install composer
 ```
 
 * On Debian-based systems:
 
 ```
-sudo apt update
-sudo apt install curl php-cli php-mbstring git unzip
-curl -sS https://getcomposer.org/installer -o composer-setup.php
+$ sudo apt update
+$ sudo apt install curl php-cli php-mbstring git unzip
+$ curl -sS https://getcomposer.org/installer -o composer-setup.php
 ```
 
 * Installing php-beryl's dependencies:
