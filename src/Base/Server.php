@@ -1,6 +1,6 @@
 <?php 
 /*
- * php-beryl - PHP Client for BerylDB.
+ * php-beryl - PHP Driver for BerylDB.
  * http://www.beryldb.com
  *
  * Copyright (C) 2021 - Carlos F. Ferry <cferry@beryldb.com>

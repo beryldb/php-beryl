@@ -1,9 +1,13 @@
 <?php
 
 /* 
- * This is an example script for php-beryl. 
- * Note that this script runs flushall() at its very
- * beginning, which means that all data will be deleted.
+ * php-beryl - PHP Driver for BerylDB.
+ * http://www.beryldb.com
+ *
+ * This is an example script for php-beryl. You may modify it
+ * and freely use it at your convenience. Feel free to join our
+ * discord support server If you are interested about
+ * BerylDB. 
  */
  
 require __DIR__.'/vendor/autoload.php';
@@ -17,16 +21,11 @@ $client = new Beryl\Connection\Client([
                    'debug' => false         /* Print raw data from remote server */
                    ]);
 
+/* Let's remove all data */
+
 $client->flushall();
 
-try
-{
-     echo $client->hset("map", "hello", "test")   . "\n";
-} 
-catch (Exception $error) 
-{
-    echo $error->getCode()                  . "\n";
-}
+/* We set a key 'hello' */
 
 try
 {
@@ -37,88 +36,25 @@ catch (Exception $error)
     echo $error->getMessage()              .  "\n";
 }
 
-/* Remove all entries */
-
-echo $client->flushall()                   . "\n";
-
-/* Create variable hello and set it to 'world' */
-
-echo $client->set("hello", "world")       . "\n";
-echo $client->set("test", "entry")        . "\n";
-
-/* Returns third character (l) in key 'hello' */
-
-echo $client->char("hello", 3)            . "\n";
-
-/* Set var to 100 */
-
-echo $client->set("var", "100")           . "\n";
-
-/* Increment var by 1 */
-
-echo $client->incr("var") 		. "\n";
-
-/* Increment var by 50 */
-
-echo $client->incrby("var", "50") 	. "\n";
-
-/* Copy var into var2 */
-
-echo $client->copy("var", "var2")       . "\n";
-
-/* Set an expire in 'var'. Keep in mind that 'var2' will not be affected by this. */
-
-echo $client->expire("var", "300")       . "\n";
-
-/* Seconds remaining before 'var' expires */
+/* We set a map 'a' with hash 'b' and value 'c'. */
 
 try
 {
-     echo $client->ttl("var")             . "\n";
+    echo $client->hset("a", "b", "c")   . "\n";
 } 
 catch (Exception $error) 
 {
-     echo $error->getMessage()            . "\n";
+    echo $error->getCode()                  . "\n";
 }
 
-/* Search for all key items. */
+/* We create list 'd' and push item 'f' */
 
-$results = $client->search("*");
-
-if ($results)
+try
 {
-     foreach ($results as $key => $value)
-     {
-           printf("%-20s | %-10s\n", $key, $value);
-     }
+    echo $client->lpush("d", "f")     . "\n";
 }
-
-/* Create list 'b' and push 1, 2 and 3 */
-
-echo $client->lpush("b", 1) 		. "\n";
-echo $client->lpush("b", 2) 		. "\n";
-
-/* Print all items in list b */
-
-foreach ($client->lget("b") as $key)
+catch (Exception $error) 
 {
-     printf("%s\n", $key);
+    echo $error->getCode()                  . "\n";
 }
-
-/* Resize list 'b' to 1 element (This will remove all elements from list.). */
-
-echo $client->lresize("b", 1)		   . "\n";
-
-/* Create a map x, with hash item and value test */
-
-echo $client->hset("x", "item", "test")    . "\n";
-echo $client->hset("x2", "item2", "test2") . "\n";
-
-/* Get x's length */
-
-echo $client->hstrlen("x", "item") 	   . "\n";
-
-/* Count all items in map x */
-
-echo $client->hcount("x")      . "\n";
-
+   

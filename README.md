@@ -1,4 +1,6 @@
-![Logo](https://static.beryl.dev/smaller.png)
+<p align="center">
+  <img src="https://static.beryl.dev/smaller.png">
+</p>
 
 # php-beryl, a PHP driver for BerylDB.
 

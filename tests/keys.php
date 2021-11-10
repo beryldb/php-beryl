@@ -28,6 +28,14 @@ echo $client->ismatch("hello", "wo*")     . "\n";  /* 1 */
 
 echo $client->strlen("hello") 	          . "\n"; /* 5 */
 
+/* Increment var by 1 */
+
+echo $client->incr("var")               . "\n";
+
+/* Increment var by 50 */
+
+echo $client->incrby("var", "50")       . "\n";
+
 /* Check if hello actually exists */
 
 echo $client->exists("hello")       	  . "\n"; /* 1 */
