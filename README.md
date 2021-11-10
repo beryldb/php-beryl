@@ -91,7 +91,7 @@ Feel free to check `example.php` and files in the `test/` directory.
 ## Simple queries
 
 Most php-beryl functions have the same name as any other BerylDB function.
-For instance, if you want to execute a basic key set:
+For instance, if you want to execute a basic key set
 
 ```php 
 echo $client->set("hello", "world");
@@ -106,7 +106,7 @@ world
 ```
 
 In case of requesting for a key that is not defined, a Throw exception will be
-raised. For instance:
+raised. For instance, we retrieve key **``hello``** 
 
 ```php 
 try
@@ -120,7 +120,7 @@ catch (Exception $error)
 ```
 
 In BerylDB, different structues cannot hold the same variable name. In order
-to check what kind of data structure is a given key:
+to check what kind of data structure is a given key, you may use type
 
 ```php 
 echo $client->type("a") // => KEY
