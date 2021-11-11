@@ -1,6 +1,6 @@
 {
   "name": "beryldb/php-beryl",
-  "description": "PHP client for BerylDB.",
+  "description": "PHP driver for BerylDB.",
   "type": "library",
   "license": "BSD-3-Clause",
   "keywords": [
