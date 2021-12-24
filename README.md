@@ -301,7 +301,7 @@ BSD license.
 
 ## Join our community 👋
 
-We invite people from different backgrounds 🌈👨❤️ :raising_hand::older_man:  
+We invite people from different backgrounds 🌈👨❤️ 
 
 If you are just getting started as programmer, there are several ways that you can
 collaborate. There is no need to be a senior programmer. At BerylDB, we
